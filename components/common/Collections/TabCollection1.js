@@ -1,7 +1,7 @@
+/** @format */
+
 import React, { useState, useContext } from "react";
 import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
-import { useQuery } from "@apollo/client";
-import { gql } from "@apollo/client";
 import ProductItem from "../product-box/ProductBox1";
 import CartContext from "../../../helpers/cart/index";
 import { Container, Row, Col, Media } from "reactstrap";
@@ -9,39 +9,7 @@ import { WishlistContext } from "../../../helpers/wishlist/WishlistContext";
 import PostLoader from "../PostLoader";
 import { CompareContext } from "../../../helpers/Compare/CompareContext";
 import { CurrencyContext } from "../../../helpers/Currency/CurrencyContext";
-
-const GET_PRODUCTS = gql`
-  query products($type: _CategoryType!, $indexFrom: Int!, $limit: Int!) {
-    products(type: $type, indexFrom: $indexFrom, limit: $limit) {
-      items {
-        id
-        title
-        description
-        type
-        brand
-        category
-        price
-        new
-        stock
-        sale
-        discount
-        variants {
-          id
-          sku
-          size
-          color
-          image_id
-        }
-        images {
-          image_id
-          id
-          alt
-          src
-        }
-      }
-    }
-  }
-`;
+import emptySearch from "../../../public/assets/images/empty-search.jpg";
 
 const TabContent = ({
   data,
@@ -61,19 +29,19 @@ const TabContent = ({
   return (
     <Row className="no-slider">
       {!data ||
-      !data.products ||
-      !data.products.items ||
-      data.products.items.length === 0 ||
-      loading ? (
+        !data.products ||
+        !data.products.items ||
+        data.products.items.length === 0 ||
+        loading ? (
         data &&
-        data.products &&
-        data.products.items &&
-        data.products.items.length === 0 ? (
+          data.products &&
+          data.products.items &&
+          data.products.items.length === 0 ? (
           <Col xs="12">
             <div>
               <div className="col-sm-12 empty-cart-cls text-center">
                 <Media
-                  src={"/assets/images/empty-search.jpg"}
+                  src={emptySearch}
                   className="img-fluid mb-4 mx-auto"
                   alt=""
                 />
@@ -142,15 +110,7 @@ const SpecialProducts = ({
   const currency = curContext.state;
   const quantity = context.quantity;
 
-  var { loading, data } = useQuery(GET_PRODUCTS, {
-    variables: {
-      type: activeTab,
-      indexFrom: 0,
-      limit: 8,
-    },
-  });
-
-  console.log("data product 154",data);
+  var { loading, data } = [];
 
   return (
     <div>

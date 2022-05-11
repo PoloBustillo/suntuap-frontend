@@ -1,8 +1,10 @@
+/** @format */
+
 import React from "react";
 import Slider from "react-slick";
 import { Row, Col, Media, Container } from "reactstrap";
-import { useQuery } from "@apollo/client";
-import { gql } from '@apollo/client';
+import { useQuery } from "@apollo/react-hooks";
+import gql from "graphql-tag";
 
 const GET_PRODUCTS = gql`
   query instagram($type: String!) {
@@ -52,24 +54,19 @@ var settings = {
 };
 
 const Instagram = ({ type }) => {
-  var { data } = useQuery(GET_PRODUCTS, {
-    variables: {
-      type: type,
-    },
-  });
+  var { data } = [];
 
   return (
     <section className="instagram ratio_square">
       <Container
-        className={`${
-          type == "nursery" ||
+        className={`${type == "nursery" ||
           type == "bags" ||
           type == "fashion" ||
           type == "christmas" ||
           type == "fashion"
-            ? "p-0"
-            : ""
-        }`}
+          ? "p-0"
+          : ""
+          }`}
         fluid={true}
       >
         <Row>

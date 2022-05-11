@@ -1,13 +1,16 @@
+/** @format */
+
 import React, { useContext, useEffect, useState } from "react";
 import Slider from "react-slick";
-import { useQuery } from "@apollo/client";
-import { gql } from "@apollo/client";
+import { useQuery } from "@apollo/react-hooks";
+import gql from "graphql-tag";
 import ProductItems from "../product-box/ProductBox1";
-import { Row, Col, Container } from "reactstrap";
+import { Row, Col, Container, Media } from "reactstrap";
 import CartContext from "../../../helpers/cart";
 import { WishlistContext } from "../../../helpers/wishlist/WishlistContext";
 import PostLoader from "../PostLoader";
 import { CompareContext } from "../../../helpers/Compare/CompareContext";
+import search from "../../../public/assets/images/empty-search.jpg";
 
 const GET_PRODUCTS = gql`
   query products($type: _CategoryType!, $indexFrom: Int!, $limit: Int!) {
@@ -62,14 +65,7 @@ const TopCollection = ({
   const quantity = context.quantity;
   const [delayProduct, setDelayProduct] = useState(true);
 
-  var { loading, data } = useQuery(GET_PRODUCTS, {
-    variables: {
-      type: type,
-      indexFrom: 0,
-      limit: 8,
-    },
-  });
-
+  var { loading, data } = [];
   useEffect(() => {
     if (data === undefined) {
       noSlider === false;
@@ -80,7 +76,7 @@ const TopCollection = ({
       setDelayProduct(false);
     }, 1);
   }, [delayProduct]);
-  
+
   return (
     <>
       <section className={designClass}>
@@ -154,10 +150,10 @@ const TopCollection = ({
             <Container>
               <Row className="margin-default">
                 {!data ||
-                !data.products ||
-                !data.products.items ||
-                !data.products.items.length === 0 ||
-                loading ? (
+                  !data.products ||
+                  !data.products.items ||
+                  !data.products.items.length === 0 ||
+                  loading ? (
                   <div className="row margin-default">
                     <div className="col-xl-3 col-lg-4 col-6">
                       <PostLoader />

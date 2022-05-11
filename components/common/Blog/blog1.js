@@ -1,29 +1,17 @@
+/** @format */
+
 import React, { Fragment } from "react";
 import Slider from "react-slick";
 import Link from "next/link";
-import { gql } from '@apollo/client';
-import { useQuery } from "@apollo/client";
+
+
 import { Slider3 } from "../../../services/script";
 import { Media, Container, Row, Col } from "reactstrap";
 
-const GET_PRODUCTS = gql`
-  query blog($type: String!) {
-    blog(type: $type) {
-      img
-      link
-      title
-      desc
-      date
-    }
-  }
-`;
+
 
 const BlogSection = ({ type, sectionClass, title, inner, hrClass }) => {
-  var { data } = useQuery(GET_PRODUCTS, {
-    variables: {
-      type: type,
-    },
-  });
+  var { data } = [];
   return (
     <Fragment>
       <section className={sectionClass}>
