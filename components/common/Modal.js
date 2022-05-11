@@ -1,19 +1,38 @@
+/** @format */
+
 import React, { useState } from "react";
-import {
-  Col,
-  Media,
-  Row,
-  Modal,
-  ModalBody,
-  Input,
-  Form,
-  Button,
-} from "reactstrap";
+import { Col, Media, Row, Modal, ModalBody, Form, Button } from "reactstrap";
+import offerBanner from "../../public/assets/images/Banner.jpeg";
+import TextTransition, { presets } from "react-text-transition";
+import { getModalInfo } from "../../services";
+import { logError } from "../../utils/logger";
 
 const ModalComponent = () => {
   const [modal, setModal] = useState(true);
-
+  const TEXTS = ["Vence", "Construi", "Mejora", "Triunfa"];
   const toggle = () => setModal(!modal);
+  const [index, setIndex] = React.useState(0);
+  const [modalInfo, setModalInfo] = React.useState();
+
+  React.useEffect(async () => {
+    (async () => {
+      try {
+        let modalInfo = await getModalInfo();
+        setModalInfo(modalInfo);
+        setModal(modalInfo.attributes.Habilitado)
+      } catch (error) {
+        console.log(error);
+        logError(`No se obtuvo modal`, ModalComponent.name, { error });
+      }
+    })();
+
+
+    const intervalId = setInterval(
+      () => setIndex((index) => index + 1),
+      2000 // every 3 seconds
+    );
+    return () => clearTimeout(intervalId);
+  }, []);
 
   return (
     <Modal
@@ -38,37 +57,50 @@ const ModalComponent = () => {
                 </Button>
                 <div className="offer-content">
                   <Media
-                    src={"/assets/images/Offer-banner.png"}
-                    className="img-fluid blur-up lazyload"
+                    style={{ width: "100%" }}
+                    src={modalInfo ? modalInfo.attributes.Imagen ? modalInfo.attributes.Imagen.data.attributes.url : offerBanner : offerBanner}
+                    className="margin-auto img-fluid blur-up lazyload"
                     alt=""
                   />
-                  <h2>newsletter</h2>
-                  <Form
-                    action="https://pixelstrap.us19.list-manage.com/subscribe/post?u=5a128856334b598b395f1fc9b&amp;id=082f74cbda"
-                    className="auth-form needs-validation"
-                    method="post"
-                    id="mc-embedded-subscribe-form"
-                    name="mc-embedded-subscribe-form"
-                    target="_blank"
-                  >
-                    <div className="form-group mx-sm-3">
-                      <Input
-                        type="text"
-                        className="form-control"
-                        name="EMAIL"
-                        id="mce-EMAIL"
-                        placeholder="Enter your email"
-                        required="required"
-                      />
+
+                  <Row>
+                    <Col>
+                      <div className="banner-text">
+                        <h2>
+                          Solo <span>Unidos </span>
+                          <TextTransition
+                            text={TEXTS[index % TEXTS.length]}
+                            springConfig={presets.wobbly}
+                            inline={true}
+                          />
+                          remos
+                        </h2>
+                      </div>
+                    </Col>
+                  </Row>
+                  <Row>
+                    <Col
+                      style={{
+                        display: "flex",
+                        alignItems: "center",
+                        justifyContent: "center",
+                      }}
+                    >
                       <Button
                         type="submit"
                         className="btn btn-solid"
                         id="mc-submit"
+                        onClick={() => {
+                          window.open(
+                            modalInfo.attributes.BotonModal.link.data.attributes.url,
+                            "_blank"
+                          );
+                        }}
                       >
-                        subscribe
+                        {modalInfo ? modalInfo.attributes.BotonModal.Nombre : "Accede"}
                       </Button>
-                    </div>
-                  </Form>
+                    </Col>
+                  </Row>
                 </div>
               </div>
             </Col>
