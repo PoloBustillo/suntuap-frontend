@@ -14,6 +14,7 @@ import Paragraph from "../components/common/Paragraph";
 import ModalComponent from "../components/common/Modal";
 import Helmet from "react-helmet";
 import MasterFooter from "../components/footers/common/MasterFooter";
+import { getInformacion } from "../services";
 
 const Fashion = () => {
   return (

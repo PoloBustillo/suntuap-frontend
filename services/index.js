@@ -16,11 +16,11 @@ export const getBannerData = async () => {
 }
 
 export const getInformacion = async () => {
-    let banners = await axios.get(SERVICE_URL + INFORMACION_ENDPOINT + POPULATE_ALL, { httpAgent: agent });
+    let banners = await axios.get(SERVICE_URL + INFORMACION_ENDPOINT + POPULATE_ALL);
     return banners.data.data
 }
 export const getMenus = async () => {
-    let menus = await axios.get(SERVICE_URL + MENUS_ENDPOINT + POPULATE_ALL, { httpAgent: agent });
+    let menus = await axios.get(SERVICE_URL + MENUS_ENDPOINT + POPULATE_ALL);
     return menus
 }
 export const getModalInfo = async () => {
