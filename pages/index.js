@@ -1,6 +1,4 @@
-/** @format */
-
-import React, { useEffect, useState } from "react";
+import React from "react";
 import Banner from "./layouts/Fashion/Components/Banner";
 import CollectionBanner from "./layouts/Fashion/Components/Collection-Banner";
 import TopCollection from "../components/common/Collections/Collection3";
@@ -10,60 +8,23 @@ import ServiceLayout from "../components/common/Service/service1";
 import Blog from "../components/common/Blog/blog1";
 import Instagram from "../components/common/instagram/instagram1";
 import LogoBlock from "../components/common/logo-block";
-import HeaderFive from "../components/headers/Header-five";
-import BlogBanner from "../components/common/Blog/blog2";
+import HeaderOne from "../components/headers/header-one";
 import { Product4 } from "../services/script";
 import Paragraph from "../components/common/Paragraph";
 import ModalComponent from "../components/common/Modal";
 import Helmet from "react-helmet";
-import logo from "../public/logo2.jpeg";
 import MasterFooter from "../components/footers/common/MasterFooter";
-import TimeBanner from "./layouts/Watch/components/TimeBanner";
-import { getInformacion, getMenus, HOST_URL } from "../services";
 
-const Fashion = ({ info, menus }) => {
-
+const Fashion = () => {
   return (
     <>
       <Helmet>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <link rel="icon" type="image/x-icon" href={logo} />
+        <link rel="icon" type="image/x-icon" href={"/assets/images/favicon/1.png"} />
       </Helmet>
-
       <ModalComponent />
-      <HeaderFive
-        menu={menus}
-        nombre={"SUNTUAP"}
-        slogan={info ? info.Slogan : ""}
-        phone={info ? info.Telefono : ""}
-        logoName={info ? `${HOST_URL}${info.Logo?.data.attributes.url}` : ""}
-        direction="left"
-        topClass="top-header top-header-dark3"
-      />
-
-      <TimeBanner></TimeBanner>
+      <HeaderOne logoName={"logo.png"} topClass="top-header" />
       <Banner />
-      <BlogBanner></BlogBanner>
-      <ServiceLayout sectionClass="border-section small-section" />
-      <SpecialProducts
-        type="fashion"
-        backImage={true}
-        productSlider={Product4}
-        line={true}
-        title="title1 section-t-space"
-        inner="title-inner1"
-        designClass="section-b-space p-t-0 ratio_asos"
-        noSlider="true"
-        cartClass="cart-info cart-wrap"
-      />
-      <div className="section-b-space">
-        <LogoBlock />
-      </div>
-      <Paragraph
-        title="title1 section-t-space"
-        inner="title-inner1"
-        hrClass={true}
-      />
       <CollectionBanner />
       <Paragraph
         title="title1 section-t-space"
@@ -82,11 +43,23 @@ const Fashion = ({ info, menus }) => {
         cartClass="cart-info cart-wrap"
       />
       <Parallax />
-
-
+      <SpecialProducts
+        type="fashion"
+        backImage={true}
+        productSlider={Product4}
+        line={true}
+        title="title1 section-t-space"
+        inner="title-inner1"
+        designClass="section-b-space p-t-0 ratio_asos"
+        noSlider="true"
+        cartClass="cart-info cart-wrap"
+      />
+      <ServiceLayout sectionClass="border-section small-section" />
       <Blog type="fashion" title="title1" inner="title-inner1" />
       <Instagram type="fashion" />
-
+      <div className="section-b-space">
+        <LogoBlock />
+      </div>
       <MasterFooter
         footerClass={`footer-light`}
         footerLayOut={"light-layout upper-footer"}
@@ -94,27 +67,9 @@ const Fashion = ({ info, menus }) => {
         belowSection={"section-b-space light-layout"}
         newLatter={true}
         logoName={"logo.png"}
-        info={info}
       />
     </>
   );
 };
 
 export default Fashion;
-
-export async function getStaticProps() {
-  // const information = await getInformacion();
-  // console.log("INFORMATION")
-  // console.log(information)
-  // const menus = await getMenus();
-  // console.log(menus.data)
-  return {
-    props: {
-      info: {},
-      menus: {},
-    },
-    revalidate: 10,
-  };
-}
-
-

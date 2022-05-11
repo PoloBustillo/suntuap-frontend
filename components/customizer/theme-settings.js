@@ -2,7 +2,7 @@ import React, { useEffect, useState, useContext } from "react";
 import Link from "next/link";
 import SettingContext from "../../helpers/theme-setting/SettingContext";
 import { ToastContainer } from "react-toastify";
-import  config  from "./config.json";
+import config from "./config.json";
 import {
   Media,
   Col,
@@ -285,9 +285,8 @@ const ThemeSettings = () => {
           </div>
           <div className="setting-body">
             <div
-              className={`setting-title ${
-                isOpen && collapse == 1 ? "active" : ""
-              }`}
+              className={`setting-title ${isOpen && collapse == 1 ? "active" : ""
+                }`}
             >
               <h4
                 onClick={() => {
@@ -317,9 +316,8 @@ const ThemeSettings = () => {
               </div>
             </Collapse>
             <div
-              className={`setting-title ${
-                isOpen && collapse == 2 ? "active" : ""
-              }`}
+              className={`setting-title ${isOpen && collapse == 2 ? "active" : ""
+                }`}
             >
               <h4
                 onClick={() => {
@@ -349,9 +347,8 @@ const ThemeSettings = () => {
               </div>
             </Collapse>
             <div
-              className={`setting-title ${
-                isOpen && collapse == 3 ? "active" : ""
-              }`}
+              className={`setting-title ${isOpen && collapse == 3 ? "active" : ""
+                }`}
             >
               <h4
                 onClick={() => {
@@ -381,9 +378,8 @@ const ThemeSettings = () => {
               </div>
             </Collapse>
             <div
-              className={`setting-title ${
-                isOpen && collapse == 4 ? "active" : ""
-              }`}
+              className={`setting-title ${isOpen && collapse == 4 ? "active" : ""
+                }`}
             >
               <h4
                 onClick={() => {
@@ -412,9 +408,8 @@ const ThemeSettings = () => {
               </div>
             </Collapse>
             <div
-              className={`setting-title ${
-                isOpen && collapse == 5 ? "active" : ""
-              }`}
+              className={`setting-title ${isOpen && collapse == 5 ? "active" : ""
+                }`}
             >
               <h4
                 onClick={() => {
