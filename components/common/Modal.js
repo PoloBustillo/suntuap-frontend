@@ -38,7 +38,7 @@ const ModalComponent = () => {
     <Modal
       isOpen={modal}
       toggle={toggle}
-      className="theme-modal modal-lg"
+      className="theme-modal modal-md"
       centered
     >
       <div>
@@ -66,7 +66,7 @@ const ModalComponent = () => {
                   <Row>
                     <Col>
                       <div className="banner-text">
-                        <h2>
+                        <h2 style={{ fontSize: "2vw" }}>
                           Solo <span>Unidos </span>
                           <TextTransition
                             text={TEXTS[index % TEXTS.length]}

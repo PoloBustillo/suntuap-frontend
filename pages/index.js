@@ -8,7 +8,7 @@ import ServiceLayout from "../components/common/Service/service1";
 import Blog from "../components/common/Blog/blog1";
 import Instagram from "../components/common/instagram/instagram1";
 import LogoBlock from "../components/common/logo-block";
-import HeaderOne from "../components/headers/header-one";
+import HeaderTwo from "../components/headers/header-two";
 import { Product4 } from "../services/script";
 import Paragraph from "../components/common/Paragraph";
 import ModalComponent from "../components/common/Modal";
@@ -20,10 +20,10 @@ const Fashion = () => {
     <>
       <Helmet>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <link rel="icon" type="image/x-icon" href={"/assets/images/favicon/1.png"} />
+        <link rel="icon" type="image/x-icon" href={"/assets/images/favicon/sun_logo.jpeg"} />
       </Helmet>
       <ModalComponent />
-      <HeaderOne logoName={"logo.png"} topClass="top-header" />
+      <HeaderTwo logoName={"logo.png"} topClass="top-header" />
       <Banner />
       <CollectionBanner />
       <Paragraph
