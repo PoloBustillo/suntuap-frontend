@@ -14,10 +14,13 @@ import Paragraph from "../components/common/Paragraph";
 import ModalComponent from "../components/common/Modal";
 import Helmet from "react-helmet";
 import MasterFooter from "../components/footers/common/MasterFooter";
+import axios from "axios";
+import { getInformacion } from "../services";
 
-const Fashion = () => {
+const Fashion = (props) => {
   return (
     <>
+
       <Helmet>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" type="image/x-icon" href={"/assets/images/favicon/sun_logo.jpeg"} />
@@ -25,6 +28,7 @@ const Fashion = () => {
       <ModalComponent />
       <HeaderTwo logoName={"logo.png"} topClass="top-header" />
       <Banner />
+      {props.info.Telefono}
       <CollectionBanner />
       <Paragraph
         title="title1 section-t-space"
@@ -71,5 +75,15 @@ const Fashion = () => {
     </>
   );
 };
+
+export async function getStaticProps() {
+  const res = await getInformacion()
+  return {
+    props: {
+      info: { ...res.attributes },
+    },
+    revalidate: 10, // In seconds
+  }
+}
 
 export default Fashion;

@@ -17,9 +17,8 @@ const TopBarDark = ({ topClass, fluid }) => {
           <Col lg="6">
             <div className="header-contact">
               <ul>
-                <li>Welcome to Our store Multikart</li>
                 <li>
-                  <i className="fa fa-phone" aria-hidden="true"></i>Call Us: 123
+                  <i className="fa fa-phone" aria-hidden="true"></i>Tel: 123
                   - 456 - 7890
                 </li>
               </ul>
@@ -27,28 +26,21 @@ const TopBarDark = ({ topClass, fluid }) => {
           </Col>
           <Col lg="6" className="text-right">
             <ul className="header-dropdown">
-              <li className="mobile-wishlist">
-                <Link href="/page/account/wishlist">
-                  <a>
-                    <i className="fa fa-heart" aria-hidden="true"></i> wishlist
-                  </a>
-                </Link>
-              </li>
               <li className="onhover-dropdown mobile-account">
-                <i className="fa fa-user" aria-hidden="true"></i> My Account
+                <i className="fa fa-user" aria-hidden="true"></i> Mi Cuenta
                 <ul className="onhover-show-div">
                   <li>
                     <Link href={`/page/account/login`}>
-                      <a>Login</a>
+                      <a>Acceder</a>
                     </Link>
                   </li>
                   <li>
                     <Link href={`/page/account/register`}>
-                      <a>Register</a>
+                      <a>Registrar</a>
                     </Link>
                   </li>
-                  <li onClick={() => firebaseLogout()}>
-                    <a>Logout</a>
+                  <li onClick={() => { console.log("LOGOUT") }}>
+                    <a>Salir</a>
                   </li>
                 </ul>
               </li>
