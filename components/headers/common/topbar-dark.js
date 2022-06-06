@@ -1,15 +1,21 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Container, Row, Col } from "reactstrap";
 import Link from "next/link";
 import firebase from "../../../config/base";
 import { useRouter } from "next/router";
+import { getInformacion } from "../../../services";
 
 const TopBarDark = ({ topClass, fluid }) => {
   const router = useRouter();
-  const firebaseLogout = () => {
-    firebase.auth().signOut();
-    router.push("/page/account/login-auth");
-  };
+  const [information, setInformation] = useState({})
+  useEffect(() => {
+    (async () => {
+      let data = await getInformacion()
+      console.log(data)
+      setInformation(data.attributes)
+    })();
+  }, [information])
+
   return (
     <div className={topClass}>
       <Container fluid={fluid}>
@@ -17,10 +23,11 @@ const TopBarDark = ({ topClass, fluid }) => {
           <Col lg="6">
             <div className="header-contact">
               <ul>
-                <li>
-                  <i className="fa fa-phone" aria-hidden="true"></i>Tel: 123
-                  - 456 - 7890
-                </li>
+                <a href={`tel:${information.Telefono}`}>
+                  <li>
+                    <i className="fa fa-phone" aria-hidden="true"></i>Tel: {information.Telefono}
+                  </li>
+                </a>
               </ul>
             </div>
           </Col>

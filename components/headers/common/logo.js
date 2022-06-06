@@ -1,12 +1,12 @@
 import React, { Fragment } from 'react';
 import Link from 'next/link';
 
-const LogoImage = ({ logo }) => {
+const LogoImage = ({ logo, logoImage }) => {
     return (
         <Fragment>
             <Link href={'/'} >
                 <a>
-                    <img src={`/assets/images/icon/${logo?logo:'logo.png'}`} alt="" className="img-fluid" />
+                    <img src={logoImage ? logoImage : '/assets/images/icon/logo.png'} alt="" className="img-fluid" />
                 </a>
             </Link>
         </Fragment>

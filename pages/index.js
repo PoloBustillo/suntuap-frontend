@@ -26,9 +26,9 @@ const Fashion = (props) => {
         <link rel="icon" type="image/x-icon" href={"/assets/images/favicon/sun_logo.jpeg"} />
       </Helmet>
       <ModalComponent />
-      <HeaderTwo logoName={"logo.png"} topClass="top-header" />
+      <HeaderTwo information={props.info} logoName={"logo.png"} topClass="top-header" />
       <Banner />
-      {props.info.Telefono}
+
       <CollectionBanner />
       <Paragraph
         title="title1 section-t-space"

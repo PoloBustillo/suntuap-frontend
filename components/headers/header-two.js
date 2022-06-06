@@ -9,8 +9,9 @@ import LogoImage from "./common/logo";
 import Currency from "./common/currency";
 import SearchOverlay from "./common/search-overlay";
 
-const HeaderTwo = ({ logoName, headerClass, topClass, direction }) => {
+const HeaderTwo = ({ logoName, headerClass, topClass, direction, information }) => {
   useEffect(() => {
+    console.log("Info", information)
     setTimeout(function () {
       document.querySelectorAll(".loader-wrapper").style = "display:none";
     }, 2000);
@@ -53,7 +54,7 @@ const HeaderTwo = ({ logoName, headerClass, topClass, direction }) => {
                   </div>
                 </div>
                 <div className="brand-logo layout2-logo">
-                  <LogoImage logo={logoName} />
+                  <LogoImage logo={logoName} logoImage={information.Logo.data.attributes.url} />
                 </div>
                 <div className="menu-right pull-right">
                   <div>
