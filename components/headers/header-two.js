@@ -71,12 +71,6 @@ const HeaderTwo = ({ logoName, headerClass, topClass, direction, information }) 
                           </div>
                         </li>
                         <Currency icon={"/assets/images/icon/setting.png"} />
-                        {/*Header Cart Component */}
-                        {direction === undefined ? (
-                          <CartContainer icon={"/assets/images/icon/cart.png"} />
-                        ) : (
-                          <Cart icon={"/assets/images/icon/cart.png"} layout={direction} />
-                        )}
                       </ul>
                     </div>
                   </div>

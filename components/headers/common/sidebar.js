@@ -77,7 +77,7 @@ const SideBar = () => {
         <nav>
           <a href={null} onClick={closeNav}>
             <div className="sidebar-back text-left">
-              <i className="fa fa-angle-left pr-2" aria-hidden="true"></i> Back
+              <i className="fa fa-angle-left pr-2" aria-hidden="true"></i> Atrás
             </div>
           </a>
           <ul id="sub-menu" className="sidebar-menu">

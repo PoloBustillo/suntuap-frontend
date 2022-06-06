@@ -29,7 +29,7 @@ const SearchOverlay = () => {
                       type="text"
                       className="form-control"
                       id="exampleInputPassword1"
-                      placeholder="Search a Product"
+                      placeholder="Buscar en SUNTUAP"
                     />
                   </FormGroup>
                   <Button type="submit" className="btn btn-primary">
