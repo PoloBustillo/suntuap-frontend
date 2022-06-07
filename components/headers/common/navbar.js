@@ -168,7 +168,7 @@ const NavBar = () => {
                               >
                                 {childrenItem.title}
                                 {childrenItem.tag === "new" ? (
-                                  <span className="new-tag">new</span>
+                                  <span className="new-tag">NUEVO</span>
                                 ) : (
                                   ""
                                 )}
@@ -182,7 +182,7 @@ const NavBar = () => {
                                 <a>
                                   {childrenItem.title}
                                   {childrenItem.tag === "new" ? (
-                                    <span className="new-tag">new</span>
+                                    <span className="new-tag">NUEVO</span>
                                   ) : (
                                     ""
                                   )}
@@ -205,7 +205,7 @@ const NavBar = () => {
                                             {childrenSubItem.title}
                                             {childrenSubItem.tag === "new" ? (
                                               <span className="new-tag">
-                                                new
+                                                NUEVO
                                               </span>
                                             ) : (
                                               ""

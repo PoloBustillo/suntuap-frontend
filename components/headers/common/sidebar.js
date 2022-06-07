@@ -88,7 +88,7 @@ const SideBar = () => {
             </li>
             <li>
               <a href="#" onClick={(e) => handleMegaSubmenu(e)}>
-                clothing
+                Eventos
                 <span className="sub-arrow"></span>
               </a>
               <ul className="mega-menu clothing-menu">
@@ -96,68 +96,44 @@ const SideBar = () => {
                   <Row m="0">
                     <Col xl="4">
                       <div className="link-section">
-                        <h5>women's fashion</h5>
+                        <h5>Culturales</h5>
                         <ul>
                           <li>
-                            <a href="#">dresses</a>
-                          </li>
-                          <li>
-                            <a href="#">skirts</a>
-                          </li>
-                          <li>
-                            <a href="#">westarn wear</a>
-                          </li>
-                          <li>
-                            <a href="#">ethic wear</a>
-                          </li>
-                          <li>
-                            <a href="#">sport wear</a>
+                            <a href="#">Proyecciones</a>
                           </li>
                         </ul>
-                        <h5>men's fashion</h5>
+                        <h5>Políticos</h5>
                         <ul>
                           <li>
-                            <a href="#">sports wear</a>
+                            <a href="#">evento 1</a>
                           </li>
                           <li>
-                            <a href="#">western wear</a>
+                            <a href="#">evento 2</a>
                           </li>
                           <li>
-                            <a href="#">ethic wear</a>
+                            <a href="#">evento 3</a>
                           </li>
                         </ul>
                       </div>
                     </Col>
                     <Col xl="4">
                       <div className="link-section">
-                        <h5>accessories</h5>
+                        <h5>Sociales</h5>
                         <ul>
                           <li>
-                            <a href="#">fashion jewellery</a>
+                            <a href="#">evento 1</a>
                           </li>
                           <li>
-                            <a href="#">caps and hats</a>
+                            <a href="#">evento 2</a>
                           </li>
                           <li>
-                            <a href="#">precious jewellery</a>
+                            <a href="#">evento 3</a>
                           </li>
                           <li>
-                            <a href="#">necklaces</a>
+                            <a href="#">evento 4</a>
                           </li>
                           <li>
-                            <a href="#">earrings</a>
-                          </li>
-                          <li>
-                            <a href="#">wrist wear</a>
-                          </li>
-                          <li>
-                            <a href="#">ties</a>
-                          </li>
-                          <li>
-                            <a href="#">cufflinks</a>
-                          </li>
-                          <li>
-                            <a href="#">pockets squares</a>
+                            <a href="#">evento 5</a>
                           </li>
                         </ul>
                       </div>
@@ -173,38 +149,28 @@ const SideBar = () => {
             </li>
             <li>
               <a href="#" onClick={(e) => handleSubmenu(e)}>
-                bags
+                Secretarías
                 <span className="sub-arrow"></span>
               </a>
               <ul>
                 <li>
-                  <a href="#">shopper bags</a>
+                  <a href="#">Finanzas</a>
                 </li>
                 <li>
-                  <a href="#">laptop bags</a>
+                  <a href="#">Relaciones Exteriores</a>
                 </li>
                 <li>
-                  <a href="#">clutches</a>
+                  <a href="#">Prensa y propaganda</a>
                 </li>
                 <li>
-                  <a href="#" onClick={(e) => handleSubTwoMenu(e)}>
-                    purses
-                    <span className="sub-arrow"></span>
+                  <a href="#" >
+                    Formación Política
                   </a>
-                  <ul>
-                    <li>
-                      <a href="#">purses</a>
-                    </li>
-                    <li>
-                      <a href="#">wallets</a>
-                    </li>
-                    <li>
-                      <a href="#">leathers</a>
-                    </li>
-                    <li>
-                      <a href="#">satchels</a>
-                    </li>
-                  </ul>
+                </li>
+                <li>
+                  <a href="#" >
+                    Vivienda
+                  </a>
                 </li>
               </ul>
             </li>
