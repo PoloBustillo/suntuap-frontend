@@ -14,7 +14,7 @@ const MasterBanner = ({ img, title, desc, link, classes, btn, btnClass, botonNom
                   <h1 style={{ color: "whitesmoke" }}>{desc}</h1>
                   <Link href={link}>
                     <a className={`btn btn-solid ${btnClass ? btnClass : ""}`}>
-                      {botonNombre ? botonNombre : "Entra"}{" "}
+                      {botonNombre ? botonNombre : "Entrar"}{" "}
                     </a>
                   </Link>
                 </div>

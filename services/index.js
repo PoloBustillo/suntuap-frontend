@@ -7,7 +7,7 @@ const INFORMACION_ENDPOINT = '/informacion'
 const MENUS_ENDPOINT = '/menus'
 const MODAL_ENDPOINT = '/modal?populate[0]=BotonModal.link&populate[1]=Imagen&populate=*'
 const CONTADOR_ENDPOINT = '/contador/?populate[0]=BotonContador.link&populate=*s'
-const PROYECCIONE_ENDPOINT = '/proyeccions?populate=*'
+const PROYECCIONES_ENDPOINT = '/proyecciones?populate[0]=poster'
 const POPULATE_ALL = '?populate=*'
 
 export const getBannerData = async () => {
@@ -33,6 +33,6 @@ export const getContadorInfo = async () => {
 }
 
 export const getProyeccionesInfo = async () => {
-    let proyeccionData = await axios.get(SERVICE_URL + PROYECCIONE_ENDPOINT);
+    let proyeccionData = await axios.get(SERVICE_URL + PROYECCIONES_ENDPOINT);
     return proyeccionData.data.data
 }

@@ -1,8 +1,8 @@
 /** @format */
 
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
-import ProductItem from "../product-box/ProductBox1";
+import ProductItem from "../product-box/Pelicula";
 import CartContext from "../../../helpers/cart/index";
 import { Container, Row, Col, Media } from "reactstrap";
 import { WishlistContext } from "../../../helpers/wishlist/WishlistContext";
@@ -10,6 +10,7 @@ import PostLoader from "../PostLoader";
 import { CompareContext } from "../../../helpers/Compare/CompareContext";
 import { CurrencyContext } from "../../../helpers/Currency/CurrencyContext";
 import emptySearch from "../../../public/assets/images/empty-search.jpg";
+import { getProyeccionesInfo } from "../../../services";
 
 const TabContent = ({
   data,
@@ -26,65 +27,23 @@ const TabContent = ({
   const currency = curContext.state;
   const quantity = context.quantity;
 
+
   return (
     <Row className="no-slider">
-      {!data ||
-        !data.products ||
-        !data.products.items ||
-        data.products.items.length === 0 ||
-        loading ? (
-        data &&
-          data.products &&
-          data.products.items &&
-          data.products.items.length === 0 ? (
-          <Col xs="12">
-            <div>
-              <div className="col-sm-12 empty-cart-cls text-center">
-                <Media
-                  src={emptySearch}
-                  className="img-fluid mb-4 mx-auto"
-                  alt=""
-                />
-                <h3>
-                  <strong>Your Cart is Empty</strong>
-                </h3>
-                <h4>Explore more shortlist some items.</h4>
-              </div>
-            </div>
-          </Col>
-        ) : (
-          <div className="row mx-0 margin-default">
-            <div className="col-xl-3 col-lg-4 col-6">
-              <PostLoader />
-            </div>
-            <div className="col-xl-3 col-lg-4 col-6">
-              <PostLoader />
-            </div>
-            <div className="col-xl-3 col-lg-4 col-6">
-              <PostLoader />
-            </div>
-            <div className="col-xl-3 col-lg-4 col-6">
-              <PostLoader />
-            </div>
-          </div>
-        )
-      ) : (
-        data &&
-        data.products.items
-          .slice(startIndex, endIndex)
-          .map((product, i) => (
-            <ProductItem
-              key={i}
-              product={product}
-              symbol={currency.symbol}
-              addCompare={() => compareContext.addToCompare(product)}
-              addCart={() => context.addToCart(product, quantity)}
-              addWishlist={() => wishListContext.addToWish(product)}
-              cartClass={cartClass}
-              backImage={backImage}
-            />
-          ))
-      )}
+      {
+        data.map((product, i) => (
+          <ProductItem
+            key={i}
+            product={product}
+            symbol={currency.symbol}
+            addCompare={() => compareContext.addToCompare(product)}
+            addCart={() => context.addToCart(product, quantity)}
+            addWishlist={() => wishListContext.addToWish(product)}
+            cartClass={cartClass}
+            backImage={backImage}
+          />
+        ))
+      }
     </Row>
   );
 };
@@ -111,6 +70,17 @@ const SpecialProducts = ({
   const quantity = context.quantity;
 
   var { loading, data } = [];
+  const [proy, setProy] = useState([])
+
+  useEffect(() => {
+    (async () => {
+      let data = await getProyeccionesInfo();
+      console.log("PRO", data)
+      setProy(data)
+    })();
+
+
+  }, [])
 
   return (
     <div>
@@ -122,7 +92,7 @@ const SpecialProducts = ({
             <div className={title}>
               <h4>{heading}</h4>
               {/* exclusive products */}
-              <h2 className={inner}>special products</h2>
+              <h2 className={inner}>últimas proyecciones</h2>
               {line ? (
                 <div className="line"></div>
               ) : hrClass ? (
@@ -134,7 +104,7 @@ const SpecialProducts = ({
           )}
 
           <Tabs className="theme-tab">
-            <TabList className="tabs tab-title">
+            {/* <TabList className="tabs tab-title">
               <Tab
                 className={activeTab == type ? "active" : ""}
                 onClick={() => setActiveTab(type)}
@@ -153,31 +123,10 @@ const SpecialProducts = ({
               >
                 SPECIAL
               </Tab>
-            </TabList>
-
+            </TabList> */}
             <TabPanel>
               <TabContent
-                data={data}
-                loading={loading}
-                startIndex={0}
-                endIndex={8}
-                cartClass={cartClass}
-                backImage={backImage}
-              />
-            </TabPanel>
-            <TabPanel>
-              <TabContent
-                data={data}
-                loading={loading}
-                startIndex={0}
-                endIndex={8}
-                cartClass={cartClass}
-                backImage={backImage}
-              />
-            </TabPanel>
-            <TabPanel>
-              <TabContent
-                data={data}
+                data={proy}
                 loading={loading}
                 startIndex={0}
                 endIndex={8}
@@ -188,7 +137,7 @@ const SpecialProducts = ({
           </Tabs>
         </Container>
       </section>
-    </div>
+    </div >
   );
 };
 
