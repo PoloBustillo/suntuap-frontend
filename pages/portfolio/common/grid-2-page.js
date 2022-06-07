@@ -99,21 +99,15 @@ const GridTwoPage = ({ colClass, limit }) => {
   const initilindex = { index: 0, isOpen: false };
   const [photoIndex, setPhotoIndex] = useState(initilindex);
 
-  var { loading, data } = useQuery(GET_PRODUCTS, {
-    variables: {
-      type: activeTab,
-      indexFrom: 0,
-      limit: parseInt(l),
-    },
-  });
+  var { loading, data } = []
 
   const MasterTabPannel = ({ img }) => {
     return (
       <>
         {!data ||
-        !data.products ||
-        data.products.items.length === 0 ||
-        loading ? (
+          !data.products ||
+          data.products.items.length === 0 ||
+          loading ? (
           <PostLoader />
         ) : (
           <>
@@ -149,7 +143,7 @@ const GridTwoPage = ({ colClass, limit }) => {
                           nextSrc={img[(photoIndex.index + 1) % img.length]}
                           prevSrc={
                             images[
-                              (photoIndex.index + img.length - 1) % img.length
+                            (photoIndex.index + img.length - 1) % img.length
                             ]
                           }
                           imageTitle={photoIndex.index + 1 + "/" + img.length}
@@ -191,45 +185,40 @@ const GridTwoPage = ({ colClass, limit }) => {
         <Tabs>
           <TabList align="center" id="form1">
             <Tab
-              className={`filter-button project_button ${
-                activeTab == "pets" ? "active" : ""
-              }`}
+              className={`filter-button project_button ${activeTab == "pets" ? "active" : ""
+                }`}
               onClick={() => setActiveTab("pets")}
               data-filter="all"
             >
               All
             </Tab>
             <Tab
-              className={`filter-button project_button ${
-                activeTab == "fashion" ? "active" : ""
-              }`}
+              className={`filter-button project_button ${activeTab == "fashion" ? "active" : ""
+                }`}
               onClick={() => setActiveTab("fashion")}
               data-filter="fashion"
             >
               Fashion
             </Tab>
             <Tab
-              className={`filter-button project_button ${
-                activeTab == "bags" ? "active" : ""
-              }`}
+              className={`filter-button project_button ${activeTab == "bags" ? "active" : ""
+                }`}
               onClick={() => setActiveTab("bags")}
               data-filter="bags"
             >
               Bags
             </Tab>
             <Tab
-              className={`filter-button project_button ${
-                activeTab == "shoes" ? "active" : ""
-              }`}
+              className={`filter-button project_button ${activeTab == "shoes" ? "active" : ""
+                }`}
               onClick={() => setActiveTab("shoes")}
               data-filter="shoes"
             >
               Shoes
             </Tab>
             <Tab
-              className={`filter-button project_button ${
-                activeTab == "watch" ? "active" : ""
-              }`}
+              className={`filter-button project_button ${activeTab == "watch" ? "active" : ""
+                }`}
               onClick={() => setActiveTab("watch")}
               data-filter="watch"
             >

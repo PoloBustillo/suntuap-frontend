@@ -82,6 +82,11 @@ const SideBar = () => {
           </a>
           <ul id="sub-menu" className="sidebar-menu">
             <li>
+              <a href="/">
+                Inicio
+              </a>
+            </li>
+            <li>
               <a href="#" onClick={(e) => handleMegaSubmenu(e)}>
                 clothing
                 <span className="sub-arrow"></span>

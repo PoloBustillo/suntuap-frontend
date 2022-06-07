@@ -133,7 +133,14 @@ const NavBar = () => {
         <div id="mainnav">
 
           <ul className="nav-menu" style={navClose}>
-
+            <li
+              className={""}
+              style={{ cursor: "pointer" }}
+            >
+              <a className="nav-link" href="/">
+                Inicio
+              </a>
+            </li>
             {MENUITEMS.map((menuItem, i) => {
               return (
                 <li
