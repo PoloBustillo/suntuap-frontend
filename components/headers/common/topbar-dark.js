@@ -14,7 +14,7 @@ const TopBarDark = ({ topClass, fluid }) => {
       console.log(data)
       setInformation(data.attributes)
     })();
-  }, [information])
+  }, [])
 
   return (
     <div className={topClass}>
