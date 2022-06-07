@@ -1,5 +1,5 @@
 import React, { Fragment, useState } from 'react';
-import { Container, Row, Col, Media,Modal } from 'reactstrap';
+import { Container, Row, Col, Media, Modal } from 'reactstrap';
 
 const VideoSection = () => {
 
@@ -17,8 +17,8 @@ const VideoSection = () => {
         <Fragment>
             <section className="video-section pt-0">
                 <div className="title1">
-                    <h4>special offer</h4>
-                    <h2 className="title-inner1">product tutorial</h2>
+                    <h4>últimos videos</h4>
+                    <h2 className="title-inner1">SUNTUAP YouTube</h2>
                 </div>
                 <Container>
                     <Row>

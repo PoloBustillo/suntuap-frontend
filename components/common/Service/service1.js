@@ -10,26 +10,26 @@ import MasterServiceContent from "./MasterServiceConternt";
 const Data = [
   {
     link: svgFreeShipping,
-    title: "free shipping",
-    service: "free shipping world wide",
+    title: "Misión",
+    service: "....",
   },
   {
     link: svgservice,
-    title: "24 X 7 service",
-    service: "online service for new customer",
+    title: "Visión",
+    service: "...",
   },
   {
     link: svgoffer,
-    title: "festival offer",
-    service: "new online special festival offer",
+    title: "Objetivos",
+    service: "...",
   },
 ];
 
 const ServiceLayout = ({ sectionClass }) => {
   return (
-    <Container>
+    <Container style={{ paddingBottom: "70px" }} >
       <section className={sectionClass}>
-        <Row>
+        <Row >
           {Data.map((data, index) => {
             return (
               <Col md="4" className="service-block" key={index}>

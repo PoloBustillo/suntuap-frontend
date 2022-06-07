@@ -23,9 +23,9 @@ const Parallax = () => {
       <MasterParallaxBanner
         bg="parallax-banner1"
         parallaxClass="text-center p-left"
-        title="2021"
-        subTitle1="fashion trends"
-        subTitle2="special offer"
+        title="2022"
+        subTitle1="NOVEDADES"
+        subTitle2="EJEMPLOS"
       />
     </Fragment>
   );
