@@ -1,5 +1,23 @@
 export const MENUITEMS = [
-
+   {
+      title: 'SUNTUAP', type: 'sub', children: [
+         {
+            path: '/mision-suntuap', title: 'Misión', type: 'link'
+         },
+         {
+            path: '/vision-suntuap', title: 'Visión', type: 'link'
+         },
+         {
+            path: '/historia-suntuap', title: 'Historia', type: 'link'
+         },
+         {
+            path: '/organigrama', title: 'Organigrama', type: 'link'
+         },
+         {
+            path: '/padron', title: 'Padrón', type: 'link'
+         },
+      ],
+   },
    {
       title: 'Secretarías', megaMenu: true, megaMenuType: 'small', type: 'sub', children: [
          {
@@ -79,22 +97,7 @@ export const MENUITEMS = [
          },
       ]
    },
-   {
-      title: 'Eventos', type: 'sub', children: [
-         {
-            path: '/shop/left_sidebar', title: 'Culturales', type: 'sub',
-            children: [{ path: '/cultura/peliculas', title: 'Proyecciones', type: 'link' },]
-         },
-         {
-            path: '/shop/right_sidebar', title: 'Políticos', type: 'sub',
-            children: [{ path: '/shop/sidebar_popup', title: 'Evento 1', type: 'link' },]
-         },
-         {
-            path: '/shop/no_sidebar', title: 'Sociales', type: 'sub',
-            children: [{ path: '/shop/sidebar_popup', title: 'Evento 1', type: 'link' },]
-         },
-      ],
-   },
+
    {
       title: 'Otros', type: 'sub', children: [
          { path: '/blogs/blog_left_sidebar', title: 'Blog 1', type: 'link' },

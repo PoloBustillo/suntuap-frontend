@@ -25,7 +25,7 @@ const Banner = () => {
   useEffect(() => {
     (async () => {
       let data = await getBannerData();
-      console.log("DATA", data)
+
       let newData = data.map((oldData) => {
         return {
           img: oldData.attributes.Imagen.data.attributes.url,

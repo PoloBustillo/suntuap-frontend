@@ -1,7 +1,17 @@
-import React, { Fragment } from "react";
+import React, { Fragment, useEffect, useState } from "react";
 import { Row, Col, Media } from "reactstrap";
+import { getContadorInfo, getSecretarias } from "../../../services";
 
 const SideBar = () => {
+  const [data, setData] = useState([])
+
+  useEffect(() => {
+    (async () => {
+      let data = await getSecretarias();
+      setData(data)
+    })();
+  }, [])
+
   const closeNav = () => {
     var closemyslide = document.getElementById("mySidenav");
     if (closemyslide) closemyslide.classList.remove("open-side");
@@ -87,64 +97,60 @@ const SideBar = () => {
               </a>
             </li>
             <li>
-              <a href="#" onClick={(e) => handleMegaSubmenu(e)}>
-                Eventos
+              <a href="#" onClick={(e) => handleSubmenu(e)}>
+                SUNTUAP
                 <span className="sub-arrow"></span>
               </a>
-              <ul className="mega-menu clothing-menu">
+              <ul>
                 <li>
-                  <Row m="0">
-                    <Col xl="4">
-                      <div className="link-section">
-                        <h5>Culturales</h5>
-                        <ul>
-                          <li>
-                            <a href="#">Proyecciones</a>
-                          </li>
-                        </ul>
-                        <h5>Políticos</h5>
-                        <ul>
-                          <li>
-                            <a href="#">evento 1</a>
-                          </li>
-                          <li>
-                            <a href="#">evento 2</a>
-                          </li>
-                          <li>
-                            <a href="#">evento 3</a>
-                          </li>
-                        </ul>
-                      </div>
-                    </Col>
-                    <Col xl="4">
-                      <div className="link-section">
-                        <h5>Sociales</h5>
-                        <ul>
-                          <li>
-                            <a href="#">evento 1</a>
-                          </li>
-                          <li>
-                            <a href="#">evento 2</a>
-                          </li>
-                          <li>
-                            <a href="#">evento 3</a>
-                          </li>
-                          <li>
-                            <a href="#">evento 4</a>
-                          </li>
-                          <li>
-                            <a href="#">evento 5</a>
-                          </li>
-                        </ul>
-                      </div>
-                    </Col>
-                    <Col xl="4">
-                      <a href="#" className="mega-menu-banner">
-                        <Media src={"/assets/images/mega-menu/fashion.jpg"} alt="" className="img-fluid" />
-                      </a>
-                    </Col>
-                  </Row>
+                  <a href="/mision-suntuap">Misión</a>
                 </li>
+                <li>
+                  <a href="/vision-suntuap">Visión</a>
+                </li>
+                <li>
+                  <a href="/hitoria-suntuap">Historia</a>
+                </li>
+                <li>
+                  <a href="/organigrama" >
+                    Organigrama
+                  </a>
+                </li>
+                <li>
+                  <a href="/padron" >
+                    Padrón
+                  </a>
+                </li>
+              </ul>
+            </li>
+            <li>
+              <a href="#" onClick={(e) => handleMegaSubmenu(e)}>
+                Directorio
+                <span className="sub-arrow"></span>
+              </a>
+
+              <ul className="mega-menu clothing-menu">
+                <Row m="0">
+                  {data.map(secretaria => {
+                    return (
+                      <Col xl="4">
+                        <li>
+                          <a href="#" onClick={(e) => handleSubmenu(e)}>
+                            {secretaria.attributes.Nombre}
+                            <span className="sub-arrow"></span>
+                          </a>
+                          <ul >
+                            <li style={{ fontSize: "10px" }}>
+                              <a href="#">{secretaria.attributes.Encargado}</a>
+                              <a href="#">{secretaria.attributes.Email}</a>
+                            </li>
+                          </ul>
+                        </li>
+                      </Col>
+                    )
+                  })}
+                </Row>
+
               </ul>
             </li>
             <li>
@@ -306,8 +312,8 @@ const SideBar = () => {
             </li>
           </ul>
         </nav>
-      </div>
-    </Fragment>
+      </div >
+    </Fragment >
   );
 };
 

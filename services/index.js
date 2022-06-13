@@ -9,6 +9,13 @@ const MODAL_ENDPOINT = '/modal?populate[0]=BotonModal.link&populate[1]=Imagen&po
 const CONTADOR_ENDPOINT = '/contador/?populate[0]=BotonContador.link&populate=*s'
 const PROYECCIONES_ENDPOINT = '/proyecciones?populate[0]=poster'
 const POPULATE_ALL = '?populate=*'
+const SECRETARIAS_ENDPOINT = '/secretarias'
+
+
+export const getSecretarias = async () => {
+    let secretarias = await axios.get(SERVICE_URL + SECRETARIAS_ENDPOINT);
+    return secretarias.data.data
+}
 
 export const getBannerData = async () => {
     let banners = await axios.get(SERVICE_URL + BANNER_ENDPOINT);

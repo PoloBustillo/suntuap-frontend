@@ -11,7 +11,7 @@ const TopBarDark = ({ topClass, fluid }) => {
   useEffect(() => {
     (async () => {
       let data = await getInformacion()
-      console.log(data)
+
       setInformation(data.attributes)
     })();
   }, [])

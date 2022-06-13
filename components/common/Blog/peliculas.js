@@ -18,7 +18,6 @@ const BlogSection = ({ type, sectionClass, title, inner, hrClass }) => {
   useEffect(() => {
     (async () => {
       let data = await getProyeccionesInfo();
-      console.log("PRO", data)
       setData(data)
     })();
 

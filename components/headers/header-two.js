@@ -11,7 +11,7 @@ import SearchOverlay from "./common/search-overlay";
 
 const HeaderTwo = ({ logoName, headerClass, topClass, direction, information }) => {
   useEffect(() => {
-    console.log("Info", information)
+
     setTimeout(function () {
       document.querySelectorAll(".loader-wrapper").style = "display:none";
     }, 2000);

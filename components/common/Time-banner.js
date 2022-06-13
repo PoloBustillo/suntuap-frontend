@@ -10,7 +10,6 @@ const TimeBanner = () => {
 
     (async () => {
       let data = await getContadorInfo();
-      console.log("TIMME", data)
       setData(data.attributes)
     })();
 

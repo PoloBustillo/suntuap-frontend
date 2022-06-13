@@ -75,7 +75,6 @@ const SpecialProducts = ({
   useEffect(() => {
     (async () => {
       let data = await getProyeccionesInfo();
-      console.log("PRO", data)
       setProy(data)
     })();
 
