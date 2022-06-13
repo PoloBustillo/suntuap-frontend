@@ -3,7 +3,7 @@ import HeaderOne from "../../../components/headers/header-one";
 import HomeSlider from "./Component/Home-slider";
 import Category from "./Component/Category";
 import SpecialProducts from "../../../components/common/Collections/TabCollection8";
-import TimeBanner from "./Component/Time-banner";
+import TimeBanner from "../../../components/common/Time-banner";
 import ProductSlider from "../../../components/common/Collections/Collection9";
 import TopCollection from "../../../components/common/Collections/Collection13";
 import LogoBlock from "../../../components/common/logo-block";

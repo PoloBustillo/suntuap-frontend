@@ -1,14 +1,13 @@
 import React from "react";
 import Banner from "./layouts/Fashion/Components/Banner";
 import CollectionBanner from "./layouts/Fashion/Components/Noticias";
-import TopCollection from "../components/common/Collections/Collection3";
+import TimeBanner from "../components/common/Time-banner";
 import Parallax from "./layouts/Fashion/Components/Parallax";
 import ServiceLayout from "../components/common/Service/service1";
 import Blog from "../components/common/Blog/peliculas";
 import Instagram from "../components/common/instagram/instagram1";
-import LogoBlock from "../components/common/logo-block";
 import HeaderTwo from "../components/headers/header-two";
-import { Product4 } from "../services/script";
+
 import Paragraph from "../components/common/Mensajes";
 import ModalComponent from "../components/common/Modal";
 import Helmet from "react-helmet";
@@ -27,6 +26,7 @@ const Fashion = (props) => {
       <ModalComponent />
       <HeaderTwo information={props.info} logoName={"logo.png"} topClass="top-header" />
       <Banner />
+      <TimeBanner />
       <CollectionBanner />
       <Paragraph
         title="title1 section-t-space"

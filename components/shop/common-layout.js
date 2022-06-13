@@ -1,8 +1,9 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import HeaderOne from "../headers/header-one";
 import Breadcrubs from "../common/widgets/breadcrubs";
 import Helmet from "react-helmet";
 import MasterFooter from "../footers/common/MasterFooter";
+import { getInformacion } from "../../services";
 
 const CommonLayout = ({ children, title, parent, subTitle }) => {
   return (

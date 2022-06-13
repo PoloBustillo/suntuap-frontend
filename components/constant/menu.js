@@ -1,39 +1,24 @@
 export const MENUITEMS = [
-   {
-      title: 'Eventos', type: 'sub', children: [
-         {
-            path: '/shop/left_sidebar', title: 'Culturales', type: 'sub',
-            children: [{ path: '/shop/sidebar_popup', title: 'Proyecciones', type: 'link' },]
-         },
-         {
-            path: '/shop/right_sidebar', title: 'Políticos', type: 'sub',
-            children: [{ path: '/shop/sidebar_popup', title: 'Evento 1', type: 'link' },]
-         },
-         {
-            path: '/shop/no_sidebar', title: 'Sociales', type: 'sub',
-            children: [{ path: '/shop/sidebar_popup', title: 'Evento 1', type: 'link' },]
-         },
-      ],
-   },
+
    {
       title: 'Secretarías', megaMenu: true, megaMenuType: 'small', type: 'sub', children: [
          {
             title: 'Finanzas', type: 'sub', children: [
-               { path: '/portfolio/grid-2', title: 'Integrantes', type: 'link', icon: 'alert' },
-               { path: '/portfolio/grid-3', title: 'Documentos', type: 'link', icon: 'layout-accordion-merged' },
-               { path: '/portfolio/grid-4', title: 'Informes', type: 'link', icon: 'layers' },
+               { path: '/page/about-us', title: 'Integrantes', type: 'link', icon: 'alert' },
+               { path: '/page/about-us', title: 'Documentos', type: 'link', icon: 'layout-accordion-merged' },
+               { path: '/page/about-us', title: 'Informes', type: 'link', icon: 'layers' },
             ]
          },
          {
             title: 'Relaciones Exteriores', type: 'sub', children: [
-               { path: '/portfolio/grid-2', title: 'Integrantes', type: 'link', icon: 'alert' },
-               { path: '/portfolio/grid-3', title: 'Documentos', type: 'link', icon: 'layout-accordion-merged' },
-               { path: '/portfolio/grid-4', title: 'Informes', type: 'link', icon: 'layers' },
+               { path: '/page/about-us', title: 'Integrantes', type: 'link', icon: 'alert' },
+               { path: '/page/about-us', title: 'Documentos', type: 'link', icon: 'layout-accordion-merged' },
+               { path: '/page/about-us', title: 'Informes', type: 'link', icon: 'layers' },
             ]
          },
          {
             title: 'Prensa y propaganda', type: 'sub', children: [
-               { path: '/portfolio/grid-2', title: 'Integrantes', type: 'link', icon: 'alert' },
+               { path: '/page/about-us', title: 'Integrantes', type: 'link', icon: 'alert' },
                { path: '/portfolio/grid-3', title: 'Documentos', type: 'link', icon: 'layout-accordion-merged' },
                { path: '/portfolio/grid-4', title: 'Informes', type: 'link', icon: 'layers' },
             ]
@@ -54,11 +39,20 @@ export const MENUITEMS = [
          }
       ]
    },
+
    {
       title: 'Afiliación', type: 'sub', tag: "new", children: [
-         { path: '/page/collection', title: 'proceso', tag: "new", type: 'link' },
-         { path: '/page/lookbook', title: 'documentos', tag: "new", type: 'link' },
-         { path: '/page/site-map', title: 'eventos', tag: "new", type: 'link' },
+         { path: '/page/collection', title: 'registro', tag: "new", type: 'link' },
+         { path: '/page/collection', title: 'comparación', tag: "new", type: 'link' },
+         { path: '/page/collection', title: 'proceso', type: 'link' },
+         { path: '/page/lookbook', title: 'documentos', type: 'link' },
+         { path: '/page/site-map', title: 'eventos', type: 'link' },
+      ]
+   },
+   {
+      title: 'Documentos Basicos', type: 'sub', tag: "new", children: [
+         { path: '/page/collection', title: 'Contrato', type: 'link' },
+         { path: '/page/collection', title: 'Estatutos', type: 'link' },
       ]
    },
    {
@@ -84,6 +78,22 @@ export const MENUITEMS = [
             children: [{ path: '/shop/sidebar_popup', title: 'Noticias', type: 'link' },]
          },
       ]
+   },
+   {
+      title: 'Eventos', type: 'sub', children: [
+         {
+            path: '/shop/left_sidebar', title: 'Culturales', type: 'sub',
+            children: [{ path: '/cultura/peliculas', title: 'Proyecciones', type: 'link' },]
+         },
+         {
+            path: '/shop/right_sidebar', title: 'Políticos', type: 'sub',
+            children: [{ path: '/shop/sidebar_popup', title: 'Evento 1', type: 'link' },]
+         },
+         {
+            path: '/shop/no_sidebar', title: 'Sociales', type: 'sub',
+            children: [{ path: '/shop/sidebar_popup', title: 'Evento 1', type: 'link' },]
+         },
+      ],
    },
    {
       title: 'Otros', type: 'sub', children: [

@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import NavBar from "./common/navbar";
 import SideBar from "./common/sidebar";
 import Cart from "../containers/Cart";
@@ -9,6 +9,7 @@ import LogoImage from "./common/logo";
 import Currency from "./common/currency";
 import { useRouter } from "next/router";
 import SearchOverlay from "./common/search-overlay";
+import { getInformacion } from "../../services";
 
 const HeaderOne = ({
   logoName,
@@ -22,7 +23,15 @@ const HeaderOne = ({
   /*=====================
      Pre loader
      ==========================*/
+  const [data, setData] = useState({})
+
   useEffect(() => {
+    (async () => {
+      let data = await getInformacion();
+      console.log("DATA@", data)
+      setData(data.attributes)
+
+    })();
     setTimeout(function () {
       document.querySelectorAll(".loader-wrapper").style = "display:none";
     }, 2000);
@@ -91,9 +100,7 @@ const HeaderOne = ({
                     {/*SideBar Navigation Component*/}
                     <SideBar />
                   </div>
-                  <div className="brand-logo">
-                    <LogoImage logo={logoName} />
-                  </div>
+
                 </div>
                 <div className="menu-right pull-right">
                   {/*Top Navigation Bar Component*/}
@@ -113,12 +120,6 @@ const HeaderOne = ({
                           </div>
                         </li>
                         <Currency icon={"/assets/images/icon/setting.png"} />
-                        {/*Header Cart Component */}
-                        {direction === undefined ? (
-                          <CartContainer layout={direction} icon={"/assets/images/icon/cart.png"} />
-                        ) : (
-                          <Cart layout={direction} icon={"/assets/images/icon/cart.png"} />
-                        )}
                       </ul>
                     </div>
                   </div>
