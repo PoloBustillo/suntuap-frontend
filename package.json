@@ -57,6 +57,7 @@
     "react-messenger-customer-chat": "^0.8.0",
     "react-multi-carousel": "^2.5.0",
     "react-paypal-button": "^4.1.1",
+    "react-pdf": "^5.7.2",
     "react-responsive-carousel": "^3.1.51",
     "react-reveal": "^1.2.2",
     "react-slick": "^0.25.2",
