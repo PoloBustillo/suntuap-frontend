@@ -1,11 +1,18 @@
 import React, { Fragment, useEffect, useState } from "react";
 import { Row, Col, Media } from "reactstrap";
-import { getContadorInfo, getSecretarias } from "../../../services";
+import { getContadorInfo, getDelegaciones, getSecretarias } from "../../../services";
 
 const SideBar = () => {
   const [data, setData] = useState([])
+  const [dataDelegaciones, setDataDelegaciones] = useState([])
 
   useEffect(() => {
+
+    (async () => {
+      let data = await getDelegaciones();
+      setDataDelegaciones(data)
+    })();
+
     (async () => {
       let data = await getSecretarias();
       setData(data)
@@ -140,9 +147,9 @@ const SideBar = () => {
                             <span className="sub-arrow"></span>
                           </a>
                           <ul >
-                            <li style={{ fontSize: "10px" }}>
-                              <a href="#">{secretaria.attributes.Encargado}</a>
-                              <a href="#">{secretaria.attributes.Email}</a>
+                            <li>
+                              <a href="#" style={{ fontSize: "8 px" }}><i style={{ fontSize: "12px", color: "#bbb", textAlign: 'center' }} className="fa fa-user" aria-hidden="true"></i> {secretaria.attributes.Encargado}</a>
+                              <a href="#" style={{ fontSize: "7 px" }}><i style={{ fontSize: "12px", color: "#bbb", textAlign: 'center' }} className="fa fa-envelope" aria-hidden="true"></i> {secretaria.attributes.Email}</a>
                             </li>
                           </ul>
                         </li>
@@ -155,29 +162,23 @@ const SideBar = () => {
             </li>
             <li>
               <a href="#" onClick={(e) => handleSubmenu(e)}>
-                Secretarías
+                Delegaciones
                 <span className="sub-arrow"></span>
               </a>
               <ul>
-                <li>
-                  <a href="#">Finanzas</a>
-                </li>
-                <li>
-                  <a href="#">Relaciones Exteriores</a>
-                </li>
-                <li>
-                  <a href="#">Prensa y propaganda</a>
-                </li>
-                <li>
-                  <a href="#" >
-                    Formación Política
-                  </a>
-                </li>
-                <li>
-                  <a href="#" >
-                    Vivienda
-                  </a>
-                </li>
+                <Row m="0">
+                  {dataDelegaciones.map(delegaciones => {
+                    return (
+
+                      <li>
+                        <a href="#" onClick={(e) => handleSubmenu(e)}>
+                          {delegaciones.attributes.Nombre}
+                        </a>
+                      </li>
+
+                    )
+                  })}
+                </Row>
               </ul>
             </li>
             <li>
@@ -187,20 +188,69 @@ const SideBar = () => {
               </a>
               <ul>
                 <li>
-                  <a href="#">proceso</a>
+                  <a href="#">Padrón</a>
                 </li>
                 <li>
-                  <a href="#">documentos</a>
+                  <a href="#">Miembros Activos</a>
                 </li>
                 <li>
-                  <a href="#">eventos</a>
+                  <a href="#">Jubilados</a>
+                </li>
+                <li>
+                  <a href="#">Adjudicatarios</a>
+                </li>
+                <li>
+                  <a href="#">Afiliaciones</a>
                 </li>
               </ul>
             </li>
-
             <li>
               <a href="#" onClick={(e) => handleSubmenu(e)}>
-                Vaquerias
+                Documentos Básicos
+                <span className="sub-arrow"></span>
+              </a>
+              <ul>
+                <li>
+                  <a href="#">Contrato Colectivo de Trabajo</a>
+                </li>
+                <li>
+                  <a href="#">Estatutos</a>
+                </li>
+                <li>
+                  <a href="#">Comparación entre contratos colectivos</a>
+                </li>
+                <li>
+                  <a href="#" onClick={(e) => handleSubmenu(e)}>
+                    Publicaciones
+                    <span className="sub-arrow"></span>
+                  </a>
+                  <ul>
+                    <li>
+                      <a href="#">Periódico sindical Resistencia</a>
+                    </li>
+                    <li>
+                      <a href="#">Convocatorias</a>
+                    </li>
+                    <li>
+                      <a href="#">Fotografías</a>
+                    </li>
+                    <li>
+                      <a href="#">Videos</a>
+                    </li>
+                  </ul>
+                </li>
+                <li>
+                  <a href="#">Bibliografía sindical</a>
+                </li>
+                <li>
+                  <a href="#">Historia obrera</a>
+                </li>
+
+              </ul>
+            </li>
+            <li>
+              <a href="#" onClick={(e) => handleSubmenu(e)}>
+                Proyecto de vivienda
                 <span className="sub-arrow"></span>
               </a>
               <ul>
@@ -293,23 +343,7 @@ const SideBar = () => {
               </ul>
             </li>
 
-            <li>
-              <a href="#" onClick={(e) => handleSubmenu(e)}>
-                Otros
-                <span className="sub-arrow"></span>
-              </a>
-              <ul>
-                <li>
-                  <a href="#">Blog 1</a>
-                </li>
-                <li>
-                  <a href="#">Blog 2</a>
-                </li>
-                <li>
-                  <a href="#">Blog 3</a>
-                </li>
-              </ul>
-            </li>
+
           </ul>
         </nav>
       </div >

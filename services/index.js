@@ -10,10 +10,16 @@ const CONTADOR_ENDPOINT = '/contador/?populate[0]=BotonContador.link&populate=*s
 const PROYECCIONES_ENDPOINT = '/proyecciones?populate[0]=poster'
 const POPULATE_ALL = '?populate=*'
 const SECRETARIAS_ENDPOINT = '/secretarias'
+const DELEGACIONES_ENDPOINT = '/delegaciones'
 
 
 export const getSecretarias = async () => {
     let secretarias = await axios.get(SERVICE_URL + SECRETARIAS_ENDPOINT);
+    return secretarias.data.data
+}
+
+export const getDelegaciones = async () => {
+    let secretarias = await axios.get(SERVICE_URL + DELEGACIONES_ENDPOINT);
     return secretarias.data.data
 }
 

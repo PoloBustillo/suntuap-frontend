@@ -4,10 +4,12 @@ import { MENUITEMS } from "../../constant/menu";
 import { Container, Row } from "reactstrap";
 import { useTranslation } from "react-i18next";
 import { useRouter } from "next/router";
+import { getDelegaciones, getSecretarias } from "../../../services";
 
 const NavBar = () => {
   const { t } = useTranslation();
   const [navClose, setNavClose] = useState({ right: "0px" });
+  const [menuData, setMenuData] = useState(MENUITEMS)
   const router = useRouter();
 
   useEffect(() => {
@@ -17,20 +19,32 @@ const NavBar = () => {
     if (window.innerWidth < 1199) {
       setNavClose({ right: "-300px" });
     }
+    (async () => {
+      let data = await getSecretarias();
+      let dele = await getDelegaciones();
+      let newDele = dele.map((delegaciones => {
+        return { path: '#', title: delegaciones.attributes.Nombre, type: 'link', icon: 'user' }
+      }))
+      let newData = data.map((secretaria => {
+        return {
+          title: secretaria.attributes.Nombre, type: 'sub', children: [
+            { path: '#', title: secretaria.attributes.Encargado, type: 'link', icon: 'user' },
+            { path: '#', title: secretaria.attributes.Email, type: 'link', icon: 'envelope' },
+          ]
+        }
+      }))
+      const newMenu = [...menuData];
+      newMenu.splice(1, 0, {
+        title: 'Directorio', megaMenu: true, megaMenuType: 'small', type: 'sub', children: newData
+      });
+      newMenu.splice(2, 0, {
+        title: 'Delegaciones', type: 'sub', children: newDele
+      });
+      setMenuData(newMenu)
+    })();
+
   }, []);
 
-  const openNav = () => {
-    setNavClose({ right: "0px" });
-    if (router.asPath == "/layouts/Gym")
-      document.querySelector("#topHeader").classList.add("zindex-class");
-  };
-
-  const closeNav = () => {
-    setNavClose({ right: "-410px" });
-    if (router.asPath == "/layouts/Gym")
-      document.querySelector("#topHeader").classList.remove("zindex-class");
-  };
-  // eslint-disable-next-line
 
   const handleMegaSubmenu = (event) => {
     if (event.target.classList.contains("sub-arrow")) return;
@@ -57,7 +71,8 @@ const NavBar = () => {
 
   useEffect(() => {
     const currentUrl = location.pathname;
-    MENUITEMS.filter((items) => {
+
+    menuData.filter((items) => {
       if (items.path === currentUrl) setNavActive(items);
       if (!items.children) return false;
       items.children.filter((subItems) => {
@@ -71,7 +86,7 @@ const NavBar = () => {
   }, []);
 
   const setNavActive = (item) => {
-    MENUITEMS.filter((menuItem) => {
+    menuData.filter((menuItem) => {
       if (menuItem != item) menuItem.active = false;
       if (menuItem.children && menuItem.children.includes(item))
         menuItem.active = true;
@@ -85,14 +100,14 @@ const NavBar = () => {
       }
     });
 
-    setMainMenu({ mainmenu: MENUITEMS });
+    setMainMenu({ mainmenu: menuData });
   };
 
   // Click Toggle menu
   const toggletNavActive = (item) => {
     if (!item.active) {
-      MENUITEMS.forEach((a) => {
-        if (MENUITEMS.includes(item)) a.active = false;
+      menuData.forEach((a) => {
+        if (menuData.includes(item)) a.active = false;
         if (!a.children) return false;
         a.children.forEach((b) => {
           if (a.children.includes(item)) {
@@ -108,7 +123,7 @@ const NavBar = () => {
       });
     }
     item.active = !item.active;
-    setMainMenu({ mainmenu: MENUITEMS });
+    setMainMenu({ mainmenu: menuData });
   };
 
   const openMblNav = (event) => {
@@ -133,15 +148,8 @@ const NavBar = () => {
         <div id="mainnav">
 
           <ul className="nav-menu" style={navClose}>
-            <li
-              className={""}
-              style={{ cursor: "pointer" }}
-            >
-              <a className="nav-link" href="/">
-                Inicio
-              </a>
-            </li>
-            {MENUITEMS.map((menuItem, i) => {
+
+            {menuData.map((menuItem, i) => {
               return (
                 <li
                   key={i}
