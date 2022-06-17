@@ -22,15 +22,21 @@ const NavBar = () => {
     (async () => {
       let data = await getSecretarias();
       let dele = await getDelegaciones();
+
       let newDele = dele.map((delegaciones => {
-        return { path: '#', title: delegaciones.attributes.Nombre, type: 'link', icon: 'user' }
+        return { path: delegaciones.attributes.Delegacion.URL.url, title: delegaciones.attributes.Delegacion.Nombre, type: 'link', icon: 'user' }
       }))
       let newData = data.map((secretaria => {
-        return {
-          title: secretaria.attributes.Nombre, type: 'sub', children: [
-            { path: '#', title: secretaria.attributes.Encargado, type: 'link', icon: 'user' },
-            { path: '#', title: secretaria.attributes.Email, type: 'link', icon: 'envelope' },
+
+        let miembros = secretaria.attributes.Miembro.map((miembro) => {
+          return [
+            { path: secretaria.attributes.URL.url, title: miembro.Nombre, type: 'link', icon: 'user' },
+            { path: secretaria.attributes.URL.url, title: miembro.Email, type: 'link', icon: 'envelope' }
           ]
+        })
+
+        return {
+          title: secretaria.attributes.Secretaria, type: 'sub', children: miembros[0] ? miembros[0] : []
         }
       }))
       const newMenu = [...menuData];

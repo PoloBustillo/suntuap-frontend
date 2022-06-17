@@ -25,13 +25,13 @@ const Banner = () => {
   useEffect(() => {
     (async () => {
       let data = await getBannerData();
-
+      console.log(data)
       let newData = data.map((oldData) => {
         return {
           img: oldData.attributes.Imagen.data.attributes.url,
           title: oldData.attributes.Subtitulo,
           desc: oldData.attributes.Titulo,
-          link: oldData.attributes.Boton.link.data.attributes.url,
+          link: oldData.attributes.Boton.URL.url,
           botonNombre: oldData.attributes.Boton.Nombre,
         }
       })

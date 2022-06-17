@@ -1,6 +1,6 @@
 import React, { Fragment, useEffect, useState } from "react";
-import { Row, Col, Media } from "reactstrap";
-import { getContadorInfo, getDelegaciones, getSecretarias } from "../../../services";
+import { Row, Col } from "reactstrap";
+import { getDelegaciones, getSecretarias } from "../../../services";
 
 const SideBar = () => {
   const [data, setData] = useState([])
@@ -142,16 +142,20 @@ const SideBar = () => {
                     return (
                       <Col xl="4">
                         <li>
-                          <a href="#" onClick={(e) => handleSubmenu(e)}>
-                            {secretaria.attributes.Nombre}
+                          <a href={secretaria.attributes.URL.url} onClick={(e) => handleSubmenu(e)}>
+                            {secretaria.attributes.Secretaria}
                             <span className="sub-arrow"></span>
                           </a>
-                          <ul >
-                            <li>
-                              <a href="#" style={{ fontSize: "8 px" }}><i style={{ fontSize: "12px", color: "#bbb", textAlign: 'center' }} className="fa fa-user" aria-hidden="true"></i> {secretaria.attributes.Encargado}</a>
-                              <a href="#" style={{ fontSize: "7 px" }}><i style={{ fontSize: "12px", color: "#bbb", textAlign: 'center' }} className="fa fa-envelope" aria-hidden="true"></i> {secretaria.attributes.Email}</a>
-                            </li>
-                          </ul>
+                          {secretaria.attributes.Miembro.map((miembro) => {
+                            return (
+                              <ul >
+                                <li style={{ fontSize: "5 px" }}>
+                                  <a href={secretaria.attributes.URL.url} style={{ fontSize: "5 px" }}><i style={{ fontSize: "12px", color: "#bbb", textAlign: 'center' }} className="fa fa-user" aria-hidden="true"></i> {miembro.Nombre}</a>
+                                  <a href={secretaria.attributes.URL.url} style={{ fontSize: "5 px" }}><i style={{ fontSize: "8px", color: "#bbb", textAlign: 'center' }} className="fa fa-envelope" aria-hidden="true"></i> {miembro.Email}</a>
+                                </li>
+                              </ul>)
+                          })}
+
                         </li>
                       </Col>
                     )
@@ -171,8 +175,8 @@ const SideBar = () => {
                     return (
 
                       <li>
-                        <a href="#" onClick={(e) => handleSubmenu(e)}>
-                          {delegaciones.attributes.Nombre}
+                        <a href={delegaciones.attributes.Delegacion.URL.url} onClick={(e) => handleSubmenu(e)}>
+                          {delegaciones.attributes.Delegacion.Nombre}
                         </a>
                       </li>
 
