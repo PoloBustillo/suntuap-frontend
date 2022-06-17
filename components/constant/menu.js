@@ -28,25 +28,6 @@ export const MENUITEMS = [
       ]
    },
    {
-      title: 'Documentos Básicos', type: 'sub', tag: "new", children: [
-         { path: '/page/collection', title: 'Contrato', type: 'link' },
-         { path: '/page/collection', title: 'Estatutos', type: 'link' },
-         { path: '/page/collection', title: 'Comparación entre contratos colectivos', type: 'link' },
-         { path: '/page/collection', title: 'Bibliografía sindical', type: 'link' },
-         { path: '/page/collection', title: 'Historia obrera', type: 'link' },
-         {
-            title: 'Noticias/Comunicados', type: 'sub', children: [
-               { path: '/blogs/blog_left_sidebar', title: 'Blog 1', type: 'link' },
-               { path: '/blogs/blog_right_sidebar', title: 'Blog 2', type: 'link' },
-               { path: '/blogs/no_sidebar', title: 'Blog 3', type: 'link' },
-               { path: '/blogs/blog_detail', title: 'Blog 4', type: 'link' },
-            ]
-         }
-      ]
-   },
-
-
-   {
       title: 'Noticias/Comunicados', type: 'sub', children: [
          { path: '/blogs/blog_left_sidebar', title: 'Blog 1', type: 'link' },
          { path: '/blogs/blog_right_sidebar', title: 'Blog 2', type: 'link' },

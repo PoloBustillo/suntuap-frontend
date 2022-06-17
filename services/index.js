@@ -12,10 +12,17 @@ const POPULATE_ALL = '?populate=*'
 const SECRETARIAS_ENDPOINT = '/menus-directorio?populate=*'
 const DELEGACIONES_ENDPOINT = '/delegaciones/?populate[0]=Delegacion&populate[1]=Delegacion.URL'
 const DOCUMENTOS_ENDPOINT = '/menus-documento?populate[0]=Menu.Submenu&populate[1]=Menu.URL'
+const SUNTUAP_MENU_ENDPOINT = '/menus-suntuap?populate[0]=Menu.Submenu&populate[1]=Menu.URL'
+const PERIODICOS_ENDPOINT = '/periodicos/?populate[0]=Periodico'
 
 export const getSecretarias = async () => {
     let secretarias = await axios.get(SERVICE_URL + SECRETARIAS_ENDPOINT);
     return secretarias.data.data
+}
+
+export const getPeriodicos = async () => {
+    let periodicos = await axios.get(SERVICE_URL + PERIODICOS_ENDPOINT);
+    return periodicos.data.data
 }
 
 export const getDelegaciones = async () => {
@@ -27,6 +34,11 @@ export const getDelegaciones = async () => {
 export const getDocumentos = async () => {
     let documentos = await axios.get(SERVICE_URL + DOCUMENTOS_ENDPOINT);
     return documentos.data.data
+}
+
+export const getSuntuapMenu = async () => {
+    let suntuap = await axios.get(SERVICE_URL + SUNTUAP_MENU_ENDPOINT);
+    return suntuap.data.data
 }
 
 export const getBannerData = async () => {

@@ -1,11 +1,11 @@
 import React, { Fragment, useEffect, useState } from "react";
 import { Row, Col } from "reactstrap";
-import { getDelegaciones, getSecretarias } from "../../../services";
+import { getDelegaciones, getDocumentos, getSecretarias } from "../../../services";
 
 const SideBar = () => {
   const [data, setData] = useState([])
   const [dataDelegaciones, setDataDelegaciones] = useState([])
-
+  const [dataDocumentos, setDataDocumentos] = useState([])
   useEffect(() => {
 
     (async () => {
@@ -16,6 +16,11 @@ const SideBar = () => {
     (async () => {
       let data = await getSecretarias();
       setData(data)
+    })();
+
+    (async () => {
+      let data = await getDocumentos();
+      setDataDocumentos(data)
     })();
   }, [])
 
@@ -213,7 +218,42 @@ const SideBar = () => {
                 Documentos Básicos
                 <span className="sub-arrow"></span>
               </a>
+
               <ul>
+                {dataDocumentos.map(doc => {
+                  if (doc.attributes.Menu.Submenu.length != 0) {
+                    let subMenus = doc.attributes.Menu.Submenu.map((menu) => {
+                      return (
+                        <li>
+                          <a href={menu.URL}>
+                            {menu.Nombre}
+                          </a>
+                        </li>
+                      )
+                    })
+                    return (<li>
+                      <a href={doc.attributes.Menu.URL} onClick={(e) => handleSubmenu(e)}>
+                        {doc.attributes.Menu.Nombre}
+                        <span className="sub-arrow"></span>
+                      </a>
+
+                      <ul>
+                        {subMenus}
+                      </ul>
+                    </li>)
+                  }
+                  else {
+                    return (
+
+                      <li>
+                        <a href={doc.attributes.Menu.URL} onClick={(e) => handleSubmenu(e)}>
+                          {doc.attributes.Menu.Nombre}
+                        </a>
+                      </li>
+
+                    )
+                  }
+                })}
                 <li>
                   <a href="#">Contrato Colectivo de Trabajo</a>
                 </li>
