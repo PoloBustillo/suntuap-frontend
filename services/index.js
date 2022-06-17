@@ -11,7 +11,7 @@ const PROYECCIONES_ENDPOINT = '/proyecciones?populate[0]=poster'
 const POPULATE_ALL = '?populate=*'
 const SECRETARIAS_ENDPOINT = '/menus-directorio?populate=*'
 const DELEGACIONES_ENDPOINT = '/delegaciones/?populate[0]=Delegacion&populate[1]=Delegacion.URL'
-
+const DOCUMENTOS_ENDPOINT = '/menus-documento?populate[0]=Menu.Submenu&populate[1]=Menu.URL'
 
 export const getSecretarias = async () => {
     let secretarias = await axios.get(SERVICE_URL + SECRETARIAS_ENDPOINT);
@@ -22,6 +22,11 @@ export const getDelegaciones = async () => {
     let secretarias = await axios.get(SERVICE_URL + DELEGACIONES_ENDPOINT);
 
     return secretarias.data.data
+}
+
+export const getDocumentos = async () => {
+    let documentos = await axios.get(SERVICE_URL + DOCUMENTOS_ENDPOINT);
+    return documentos.data.data
 }
 
 export const getBannerData = async () => {

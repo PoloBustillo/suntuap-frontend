@@ -4,7 +4,7 @@ import { MENUITEMS } from "../../constant/menu";
 import { Container, Row } from "reactstrap";
 import { useTranslation } from "react-i18next";
 import { useRouter } from "next/router";
-import { getDelegaciones, getSecretarias } from "../../../services";
+import { getDelegaciones, getSecretarias, getDocumentos } from "../../../services";
 
 const NavBar = () => {
   const { t } = useTranslation();
@@ -22,6 +22,29 @@ const NavBar = () => {
     (async () => {
       let data = await getSecretarias();
       let dele = await getDelegaciones();
+      let docs = await getDocumentos();
+
+      let newDocs = docs.map((doc => {
+        if (doc.attributes.Menu.Submenu.length != 0) {
+          let subMenus = doc.attributes.Menu.Submenu.map((menu) => {
+
+            return { path: menu.URL, title: menu.Nombre, type: 'link' }
+          })
+          console.log(subMenus)
+          // [
+          //   { path: doc.attributes.Menu.Submenu.URL, title: 'Blog 1', type: 'link' },
+          //   { path: '/blogs/blog_right_sidebar', title: 'Blog 2', type: 'link' },
+          //   { path: '/blogs/no_sidebar', title: 'Blog 3', type: 'link' },
+          //   { path: '/blogs/blog_detail', title: 'Blog 4', type: 'link' },
+          // ]
+          return {
+            title: doc.attributes.Menu.Nombre, type: 'sub', children: subMenus
+          }
+        } else {
+          return { path: doc.attributes.Menu.URL.url, title: doc.attributes.Menu.Nombre, type: 'link', icon: 'user' }
+        }
+      }))
+      console.log(newDocs)
 
       let newDele = dele.map((delegaciones => {
         return { path: delegaciones.attributes.Delegacion.URL.url, title: delegaciones.attributes.Delegacion.Nombre, type: 'link', icon: 'user' }
@@ -45,6 +68,9 @@ const NavBar = () => {
       });
       newMenu.splice(2, 0, {
         title: 'Delegaciones', type: 'sub', children: newDele
+      });
+      newMenu.splice(4, 0, {
+        title: 'Documentos', type: 'sub', children: newDocs
       });
       setMenuData(newMenu)
     })();
