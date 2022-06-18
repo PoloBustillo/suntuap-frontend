@@ -43,6 +43,7 @@ const Fashion = (props) => {
 
       <Instagram type="fashion" />*/}
       <MasterFooter
+        information={props.info}
         footerClass={`footer-light`}
         footerLayOut={"light-layout upper-footer"}
         footerSection={"small-section border-section border-top-0"}

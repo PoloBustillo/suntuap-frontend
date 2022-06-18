@@ -15,6 +15,7 @@ import CopyRight from "./copyright";
 
 const MasterFooter = ({
   containerFluid,
+  information,
   logoName,
   layoutClass,
   footerClass,
@@ -54,10 +55,9 @@ const MasterFooter = ({
                   <Col lg="6">
                     <div className="subscribe">
                       <div>
-                        <h4>KNOW IT ALL FIRST!</h4>
+                        <h4>Subscribete al SUNTUAP!</h4>
                         <p>
-                          Never Miss Anything From Multikart By Signing Up To
-                          Our Newsletter.
+                          No te pierdas de la últimas noticias y comunicados del SUNTUAP.
                         </p>
                       </div>
                     </div>
@@ -69,11 +69,11 @@ const MasterFooter = ({
                           type="text"
                           className="form-control"
                           id="exampleFormControlInput1"
-                          placeholder="Enter your email"
+                          placeholder="Accede con tu email"
                         />
                       </FormGroup>
                       <Button type="submit" className="btn btn-solid">
-                        subscribe
+                        Subscribete
                       </Button>
                     </Form>
                   </Col>
@@ -90,9 +90,8 @@ const MasterFooter = ({
             <Row className="footer-theme partition-f">
               <Col lg="4" md="6">
                 <div
-                  className={`footer-title ${
-                    isOpen && collapse == 1 ? "active" : ""
-                  } footer-mobile-title`}
+                  className={`footer-title ${isOpen && collapse == 1 ? "active" : ""
+                    } footer-mobile-title`}
                 >
                   <h4
                     onClick={() => {
@@ -100,7 +99,7 @@ const MasterFooter = ({
                       setIsOpen(!isOpen);
                     }}
                   >
-                    about
+                    Acerca de nosotros
                     <span className="according-menu"></span>
                   </h4>
                 </div>
@@ -109,7 +108,7 @@ const MasterFooter = ({
                 >
                   <div className="footer-contant">
                     <div className="footer-logo">
-                      <LogoImage logo={logoName} />
+                      <LogoImage logo={logoName} logoImage={information.Logo.data.attributes.url} />
                     </div>
                     <p>
                       Lorem ipsum dolor sit amet, consectetur adipiscing elit,
@@ -160,9 +159,8 @@ const MasterFooter = ({
               <Col className="offset-xl-1">
                 <div className="sub-title">
                   <div
-                    className={`footer-title ${
-                      isOpen && collapse == 2 ? "active" : ""
-                    } `}
+                    className={`footer-title ${isOpen && collapse == 2 ? "active" : ""
+                      } `}
                   >
                     <h4
                       onClick={() => {
@@ -172,7 +170,7 @@ const MasterFooter = ({
                         } else setIsOpen(true);
                       }}
                     >
-                      my account
+                      mi cuenta
                       <span className="according-menu"></span>
                     </h4>
                   </div>
@@ -183,22 +181,17 @@ const MasterFooter = ({
                       <ul>
                         <li>
                           <Link href={`/shop/left_sidebar`}>
-                            <a>womens</a>
+                            <a>Afiliados</a>
                           </Link>
                         </li>
                         <li>
                           <Link href={`/shop/left_sidebar`}>
-                            <a> clothing </a>
+                            <a> Jubilados </a>
                           </Link>
                         </li>
                         <li>
                           <Link href={`/shop/left_sidebar`}>
-                            <a>accessories</a>
-                          </Link>
-                        </li>
-                        <li>
-                          <Link href={`/shop/left_sidebar`}>
-                            <a> featured </a>
+                            <a>adjudicatarios</a>
                           </Link>
                         </li>
                       </ul>
@@ -209,9 +202,8 @@ const MasterFooter = ({
               <Col>
                 <div className="sub-title">
                   <div
-                    className={`footer-title ${
-                      isOpen && collapse == 3 ? "active" : ""
-                    } `}
+                    className={`footer-title ${isOpen && collapse == 3 ? "active" : ""
+                      } `}
                   >
                     <h4
                       onClick={() => {
@@ -221,7 +213,7 @@ const MasterFooter = ({
                         } else setIsOpen(true);
                       }}
                     >
-                      why we choose
+                      ¿quien es el SUNTUAP?
                       <span className="according-menu"></span>
                     </h4>
                   </div>
@@ -231,19 +223,19 @@ const MasterFooter = ({
                     <div className="footer-contant">
                       <ul>
                         <li>
-                          <a href="#">shipping & return</a>
+                          <a href="#">objetivos</a>
                         </li>
                         <li>
-                          <a href="#">secure shopping</a>
+                          <a href="#">misión</a>
                         </li>
                         <li>
-                          <a href="#">gallary</a>
+                          <a href="#">visión</a>
                         </li>
                         <li>
-                          <a href="#">affiliates</a>
+                          <a href="#">plan de trabajo</a>
                         </li>
                         <li>
-                          <a href="#">contacts</a>
+                          <a href="#">afiliación</a>
                         </li>
                       </ul>
                     </div>
@@ -253,9 +245,8 @@ const MasterFooter = ({
               <Col>
                 <div className="sub-title">
                   <div
-                    className={`footer-title ${
-                      isOpen && collapse == 4 ? "active" : ""
-                    } `}
+                    className={`footer-title ${isOpen && collapse == 4 ? "active" : ""
+                      } `}
                   >
                     <h4
                       onClick={() => {
@@ -265,7 +256,7 @@ const MasterFooter = ({
                         } else setIsOpen(true);
                       }}
                     >
-                      store information
+                      información
                       <span className="according-menu"></span>
                     </h4>
                   </div>
@@ -275,15 +266,19 @@ const MasterFooter = ({
                     <div className="footer-contant">
                       <ul className="contact-list">
                         <li>
-                          <i className="fa fa-map-marker"></i>Multikart Demo
-                          Store, Demo store India 345-659
+                          <i className="fa fa-map-marker"></i>{information.Direccion}
                         </li>
                         <li>
-                          <i className="fa fa-phone"></i>Call Us: 123-456-7898
+                          <i className="fa fa-phone"></i>
+                          <a href={`tel:${information.Telefono}`}>
+                            Tel: {information.Telefono}
+                          </a>
                         </li>
                         <li>
-                          <i className="fa fa-envelope-o"></i>Email Us:{" "}
-                          <a href="#">Support@Fiot.com</a>
+                          <i className="fa fa-envelope-o"></i>
+                          <a href={`mailito:${information.Email}`}>
+                            Email: {information.Email}
+                          </a>
                         </li>
                         <li>
                           <i className="fa fa-fax"></i>Fax: 123456

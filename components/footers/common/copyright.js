@@ -1,7 +1,7 @@
 import React, { Fragment } from 'react';
-import { Container ,Row ,Col ,Media} from 'reactstrap';
+import { Container, Row, Col, Media } from 'reactstrap';
 
-const CopyRight = ({layout, fluid}) => {
+const CopyRight = ({ layout, fluid }) => {
     return (
         <Fragment>
             <div className={`sub-footer ${layout}`}>
@@ -9,8 +9,8 @@ const CopyRight = ({layout, fluid}) => {
                     <Row>
                         <Col xl="6" md="6" sm="12">
                             <div className="footer-end">
-                                <p><i className="fa fa-copyright" aria-hidden="true"></i> 2020-21 themeforest
-                                        powered by pixelstrap</p>
+                                <p><i className="fa fa-copyright" aria-hidden="true"></i> 2022
+                                    powered by TakitoCorp</p>
                             </div>
                         </Col>
                         <Col xl="6" md="6" sm="12">
