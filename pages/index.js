@@ -27,13 +27,13 @@ const Fashion = (props) => {
       <HeaderTwo information={props.info} logoName={"logo.png"} topClass="top-header" />
       <Banner />
       <TimeBanner />
-      <CollectionBanner />
+      {/* <CollectionBanner />
       <Paragraph
         title="title1 section-t-space"
         inner="title-inner1"
         hrClass={false}
       />
-      <Parallax />
+      <Parallax /> 
       <ServiceLayout sectionClass="border-section small-section" />
 
       <div className="section-b-space">
@@ -41,7 +41,7 @@ const Fashion = (props) => {
       </div>
       <Blog type="fashion" title="title1" inner="title-inner1" />
 
-      <Instagram type="fashion" />
+      <Instagram type="fashion" />*/}
       <MasterFooter
         footerClass={`footer-light`}
         footerLayOut={"light-layout upper-footer"}

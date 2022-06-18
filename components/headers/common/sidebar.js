@@ -191,27 +191,10 @@ const SideBar = () => {
               </ul>
             </li>
             <li>
-              <a href="#" onClick={(e) => handleSubmenu(e)}>
+              <a target="_blank" href="https://docs.google.com/forms/d/1iV5h7hGOkdRkai9777qJAEUIg35RKHYoQ1aCGHheH2w/prefill">
                 Afiliación
-                <span className="sub-arrow"></span>
               </a>
-              <ul>
-                <li>
-                  <a href="#">Padrón</a>
-                </li>
-                <li>
-                  <a href="#">Miembros Activos</a>
-                </li>
-                <li>
-                  <a href="#">Jubilados</a>
-                </li>
-                <li>
-                  <a href="#">Adjudicatarios</a>
-                </li>
-                <li>
-                  <a href="#">Afiliaciones</a>
-                </li>
-              </ul>
+
             </li>
             <li>
               <a href="#" onClick={(e) => handleSubmenu(e)}>

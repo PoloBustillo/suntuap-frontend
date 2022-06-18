@@ -98,7 +98,7 @@ const MasterCollection = ({ img, data, type, about, link, btn }) => {
         <div className="collection-content">
 
           <h3>{data.attributes.Nombre}</h3>
-          <a href={link} className="btn btn-outline">
+          <a href={data.attributes.Periodico.data.attributes.url} className="btn btn-outline">
             Leer
           </a>
         </div>
