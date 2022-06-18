@@ -1,11 +1,15 @@
 import React, { Fragment, useEffect, useState } from "react";
 import { Row, Col } from "reactstrap";
-import { getDelegaciones, getDocumentos, getSecretarias } from "../../../services";
+import { getDelegaciones, getDocumentos, getNoticiasMenu, getSecretarias, getSuntuapMenu, getVaquerias } from "../../../services";
 
 const SideBar = () => {
   const [data, setData] = useState([])
   const [dataDelegaciones, setDataDelegaciones] = useState([])
   const [dataDocumentos, setDataDocumentos] = useState([])
+  const [dataSuntuap, setDataSuntuap] = useState([])
+  const [dataNoticias, setDataNoticias] = useState([])
+  const [dataVaquerias, setDataVaquerias] = useState([])
+
   useEffect(() => {
 
     (async () => {
@@ -21,6 +25,21 @@ const SideBar = () => {
     (async () => {
       let data = await getDocumentos();
       setDataDocumentos(data)
+    })();
+
+    (async () => {
+      let data = await getSuntuapMenu();
+      setDataSuntuap(data)
+    })();
+
+    (async () => {
+      let data = await getNoticiasMenu();
+      setDataNoticias(data)
+    })();
+
+    (async () => {
+      let data = await getVaquerias();
+      setDataVaquerias(data)
     })();
   }, [])
 
@@ -114,25 +133,16 @@ const SideBar = () => {
                 <span className="sub-arrow"></span>
               </a>
               <ul>
-                <li>
-                  <a href="/mision-suntuap">Misión</a>
-                </li>
-                <li>
-                  <a href="/vision-suntuap">Visión</a>
-                </li>
-                <li>
-                  <a href="/hitoria-suntuap">Historia</a>
-                </li>
-                <li>
-                  <a href="/organigrama" >
-                    Organigrama
-                  </a>
-                </li>
-                <li>
-                  <a href="/padron" >
-                    Padrón
-                  </a>
-                </li>
+                {dataSuntuap.map(menuItem => {
+                  return (
+
+                    <li>
+                      <a href={menuItem.attributes.Menu.URL.url} onClick={(e) => handleSubmenu(e)}>
+                        {menuItem.attributes.Menu.Nombre}
+                      </a>
+                    </li>
+                  )
+                })}
               </ul>
             </li>
             <li>
@@ -237,42 +247,27 @@ const SideBar = () => {
                     )
                   }
                 })}
-                <li>
-                  <a href="#">Contrato Colectivo de Trabajo</a>
-                </li>
-                <li>
-                  <a href="#">Estatutos</a>
-                </li>
-                <li>
-                  <a href="#">Comparación entre contratos colectivos</a>
-                </li>
-                <li>
-                  <a href="#" onClick={(e) => handleSubmenu(e)}>
-                    Publicaciones
-                    <span className="sub-arrow"></span>
-                  </a>
-                  <ul>
-                    <li>
-                      <a href="#">Periódico sindical Resistencia</a>
-                    </li>
-                    <li>
-                      <a href="#">Convocatorias</a>
-                    </li>
-                    <li>
-                      <a href="#">Fotografías</a>
-                    </li>
-                    <li>
-                      <a href="#">Videos</a>
-                    </li>
-                  </ul>
-                </li>
-                <li>
-                  <a href="#">Bibliografía sindical</a>
-                </li>
-                <li>
-                  <a href="#">Historia obrera</a>
-                </li>
+              </ul>
+            </li>
+            <li>
+              <a href="#" onClick={(e) => handleSubmenu(e)}>
+                Noticias/Comunicados
+                <span className="sub-arrow"></span>
+              </a>
+              <ul>
+                <Row m="0">
+                  {dataNoticias.map(noticias => {
+                    return (
 
+                      <li>
+                        <a href={noticias.attributes.Menu.URL.url} onClick={(e) => handleSubmenu(e)}>
+                          {noticias.attributes.Menu.Nombre}
+                        </a>
+                      </li>
+
+                    )
+                  })}
+                </Row>
               </ul>
             </li>
             <li>
@@ -281,92 +276,44 @@ const SideBar = () => {
                 <span className="sub-arrow"></span>
               </a>
               <ul>
+                <Row m="0">
+                  {dataVaquerias.map(doc => {
+                    if (doc.attributes.Menu.Submenu.length != 0) {
+                      let subMenus = doc.attributes.Menu.Submenu.map((menu) => {
+                        return (
+                          <li>
+                            <a href={menu.URL}>
+                              {menu.Nombre}
+                            </a>
+                          </li>
+                        )
+                      })
+                      return (<li>
+                        <a href={doc.attributes.Menu.URL} onClick={(e) => handleSubmenu(e)}>
+                          {doc.attributes.Menu.Nombre}
+                          <span className="sub-arrow"></span>
+                        </a>
 
-                <li>
-                  <a href="#" onClick={(e) => handleSubTwoMenu(e)}>
-                    Sección 1
-                    <span className="sub-arrow"></span>
-                  </a>
-                  <ul>
-                    <li>
-                      <a href="#">eventos</a>
-                    </li>
-                    <li>
-                      <a href="#">finanzas</a>
-                    </li>
-                    <li>
-                      <a href="#">noticias</a>
-                    </li>
-                  </ul>
-                </li>
-                <li>
-                  <a href="#" onClick={(e) => handleSubTwoMenu(e)}>
-                    Sección 2
-                    <span className="sub-arrow"></span>
-                  </a>
-                  <ul>
-                    <li>
-                      <a href="#">eventos</a>
-                    </li>
-                    <li>
-                      <a href="#">finanzas</a>
-                    </li>
-                    <li>
-                      <a href="#">noticias</a>
-                    </li>
-                  </ul>
-                </li>
-                <li>
-                  <a href="#" onClick={(e) => handleSubTwoMenu(e)}>
-                    Sección 3
-                    <span className="sub-arrow"></span>
-                  </a>
-                  <ul>
-                    <li>
-                      <a href="#">eventos</a>
-                    </li>
-                    <li>
-                      <a href="#">finanzas</a>
-                    </li>
-                    <li>
-                      <a href="#">noticias</a>
-                    </li>
-                  </ul>
-                </li>
-                <li>
-                  <a href="#" onClick={(e) => handleSubTwoMenu(e)}>
-                    Sección 4
-                    <span className="sub-arrow"></span>
-                  </a>
-                  <ul>
-                    <li>
-                      <a href="#">eventos</a>
-                    </li>
-                    <li>
-                      <a href="#">finanzas</a>
-                    </li>
-                    <li>
-                      <a href="#">noticias</a>
-                    </li>
-                  </ul>
-                </li>
-                <li>
-                  <a href="#" onClick={(e) => handleSubTwoMenu(e)}>
-                    Sección 5
-                    <span className="sub-arrow"></span>
-                  </a>
-                  <ul>
-                    <li>
-                      <a href="#">eventos</a>
-                    </li>
-                    <li>
-                      <a href="#">finanzas</a>
-                    </li>
-                    <li>
-                      <a href="#">noticias</a>
-                    </li>
-                  </ul>
-                </li>
+                        <ul>
+                          {subMenus}
+                        </ul>
+                      </li>)
+                    }
+                    else {
+                      return (
+
+                        <li>
+                          <a href={doc.attributes.Menu.URL} onClick={(e) => handleSubmenu(e)}>
+                            {doc.attributes.Menu.Nombre}
+                          </a>
+                        </li>
+
+                      )
+                    }
+                  })}
+                </Row>
+
+
               </ul>
             </li>
 

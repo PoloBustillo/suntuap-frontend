@@ -4,7 +4,7 @@ import { MENUITEMS } from "../../constant/menu";
 import { Container, Row } from "reactstrap";
 import { useTranslation } from "react-i18next";
 import { useRouter } from "next/router";
-import { getDelegaciones, getSecretarias, getDocumentos } from "../../../services";
+import { getDelegaciones, getSecretarias, getDocumentos, getSuntuapMenu, getNoticiasMenu, getVaquerias } from "../../../services";
 
 const NavBar = () => {
   const { t } = useTranslation();
@@ -23,6 +23,31 @@ const NavBar = () => {
       let data = await getSecretarias();
       let dele = await getDelegaciones();
       let docs = await getDocumentos();
+      let suntuapMenu = await getSuntuapMenu();
+      let noticias = await getNoticiasMenu();
+      let vaquerias = await getVaquerias();
+
+      let newVaquerias = vaquerias.map((secretaria => {
+
+        let subMenus = secretaria.attributes.Menu.Submenu.map((menu) => {
+
+          return { path: menu.URL, title: menu.Nombre, type: 'link' }
+        })
+
+        return {
+          title: secretaria.attributes.Menu.Nombre, type: 'sub', children: subMenus
+        }
+      }))
+      console.log(newVaquerias)
+      let newNoticias = noticias.map((menuitem) => {
+
+        return { path: menuitem.attributes.Menu.URL.url, title: menuitem.attributes.Menu.Nombre, type: 'link', icon: 'user' }
+      })
+
+      let newSuntuap = suntuapMenu.map((menuitem) => {
+        return { path: menuitem.attributes.Menu.URL.url, title: menuitem.attributes.Menu.Nombre, type: 'link', icon: 'user' }
+      })
+
 
       let newDocs = docs.map((doc => {
         if (doc.attributes.Menu.Submenu.length != 0) {
@@ -30,13 +55,6 @@ const NavBar = () => {
 
             return { path: menu.URL, title: menu.Nombre, type: 'link' }
           })
-          console.log(subMenus)
-          // [
-          //   { path: doc.attributes.Menu.Submenu.URL, title: 'Blog 1', type: 'link' },
-          //   { path: '/blogs/blog_right_sidebar', title: 'Blog 2', type: 'link' },
-          //   { path: '/blogs/no_sidebar', title: 'Blog 3', type: 'link' },
-          //   { path: '/blogs/blog_detail', title: 'Blog 4', type: 'link' },
-          // ]
           return {
             title: doc.attributes.Menu.Nombre, type: 'sub', children: subMenus
           }
@@ -44,7 +62,6 @@ const NavBar = () => {
           return { path: doc.attributes.Menu.URL.url, title: doc.attributes.Menu.Nombre, type: 'link', icon: 'user' }
         }
       }))
-      console.log(newDocs)
 
       let newDele = dele.map((delegaciones => {
         return { path: delegaciones.attributes.Delegacion.URL.url, title: delegaciones.attributes.Delegacion.Nombre, type: 'link', icon: 'user' }
@@ -63,6 +80,10 @@ const NavBar = () => {
         }
       }))
       const newMenu = [...menuData];
+      console.log(newSuntuap)
+      newMenu.splice(0, 0, {
+        title: 'SUNTUAP', type: 'sub', children: newSuntuap
+      });
       newMenu.splice(1, 0, {
         title: 'Directorio', megaMenu: true, megaMenuType: 'small', type: 'sub', children: newData
       });
@@ -71,6 +92,12 @@ const NavBar = () => {
       });
       newMenu.splice(4, 0, {
         title: 'Documentos', type: 'sub', children: newDocs
+      });
+      newMenu.splice(6, 0, {
+        title: 'Noticias/Comunicados', type: 'sub', children: newNoticias
+      });
+      newMenu.splice(5, 0, {
+        title: 'Proyecto Vivienda', type: 'sub', children: newVaquerias
       });
       setMenuData(newMenu)
     })();

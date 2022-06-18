@@ -14,6 +14,8 @@ const DELEGACIONES_ENDPOINT = '/delegaciones/?populate[0]=Delegacion&populate[1]
 const DOCUMENTOS_ENDPOINT = '/menus-documento?populate[0]=Menu.Submenu&populate[1]=Menu.URL'
 const SUNTUAP_MENU_ENDPOINT = '/menus-suntuap?populate[0]=Menu.Submenu&populate[1]=Menu.URL'
 const PERIODICOS_ENDPOINT = '/periodicos/?populate[0]=Periodico'
+const NOTICIAS_ENDPOINT = '/menus-noticia/?populate[0]=Menu.URL'
+const VAQUERIAS_ENDPOINT = '/menus-vaquerias/?populate[0]=Menu.URL&populate[1]=Menu.Submenu'
 
 export const getSecretarias = async () => {
     let secretarias = await axios.get(SERVICE_URL + SECRETARIAS_ENDPOINT);
@@ -23,6 +25,11 @@ export const getSecretarias = async () => {
 export const getPeriodicos = async () => {
     let periodicos = await axios.get(SERVICE_URL + PERIODICOS_ENDPOINT);
     return periodicos.data.data
+}
+
+export const getVaquerias = async () => {
+    let vaquerias = await axios.get(SERVICE_URL + VAQUERIAS_ENDPOINT);
+    return vaquerias.data.data
 }
 
 export const getDelegaciones = async () => {
@@ -37,7 +44,12 @@ export const getDocumentos = async () => {
 }
 
 export const getSuntuapMenu = async () => {
-    let suntuap = await axios.get(SERVICE_URL + SUNTUAP_MENU_ENDPOINT);
+    let noticias = await axios.get(SERVICE_URL + SUNTUAP_MENU_ENDPOINT);
+    return noticias.data.data
+}
+
+export const getNoticiasMenu = async () => {
+    let suntuap = await axios.get(SERVICE_URL + NOTICIAS_ENDPOINT);
     return suntuap.data.data
 }
 
