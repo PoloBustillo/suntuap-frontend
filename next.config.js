@@ -32,9 +32,9 @@ const nextConfig = {
   },
   webpack(config, options) {
     config.module.rules.push({
-      test: /\.(png|jpg|gif|svg|eot|ttf|woff|woff2)$/,
+      test: /\.(png|jpg|gif|svg|eot|ttf|woff|woff2|pdf)$/,
       use: {
-        loader: "url-loader",
+        loader: "file-loader",
         options: {
           limit: 100000,
         },

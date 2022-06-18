@@ -91,7 +91,7 @@ const MasterCollection = ({ img, data, type, about, link, btn }) => {
       <div className="collection-block">
         <div>
 
-          <Document file="https://res.cloudinary.com/suntuap-cms-cloudinary/image/upload/v1655177352/Resistencia_Sindical_Octubre_eb102be597.pdf" onLoadSuccess={onDocumentLoadSuccess}>
+          <Document file={"./Periodico.pdf"} onLoadSuccess={onDocumentLoadSuccess}>
             <Page pageNumber={pageNumber} />
           </Document>
         </div>
