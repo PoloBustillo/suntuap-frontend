@@ -12,6 +12,7 @@ import {
 } from "reactstrap";
 import LogoImage from "../../headers/common/logo";
 import CopyRight from "./copyright";
+import { getInformacion } from "../../../services";
 
 const MasterFooter = ({
   containerFluid,
@@ -26,7 +27,9 @@ const MasterFooter = ({
   copyRightFluid,
   newLatter,
 }) => {
+  console.log(information);
   const [isOpen, setIsOpen] = useState();
+
   const [collapse, setCollapse] = useState(0);
   const width = window.innerWidth < 750;
   useEffect(() => {
@@ -40,9 +43,8 @@ const MasterFooter = ({
     window.addEventListener("resize", changeCollapse);
 
     return () => {
-      window.removeEventListener('resize', changeCollapse)
-    }
-
+      window.removeEventListener("resize", changeCollapse);
+    };
   }, []);
   return (
     <div>
@@ -57,7 +59,8 @@ const MasterFooter = ({
                       <div>
                         <h4>Subscribete al SUNTUAP!</h4>
                         <p>
-                          No te pierdas de la últimas noticias y comunicados del SUNTUAP.
+                          No te pierdas de la últimas noticias y comunicados del
+                          SUNTUAP.
                         </p>
                       </div>
                     </div>
@@ -90,8 +93,9 @@ const MasterFooter = ({
             <Row className="footer-theme partition-f">
               <Col lg="4" md="6">
                 <div
-                  className={`footer-title ${isOpen && collapse == 1 ? "active" : ""
-                    } footer-mobile-title`}
+                  className={`footer-title ${
+                    isOpen && collapse == 1 ? "active" : ""
+                  } footer-mobile-title`}
                 >
                   <h4
                     onClick={() => {
@@ -108,7 +112,10 @@ const MasterFooter = ({
                 >
                   <div className="footer-contant">
                     <div className="footer-logo">
-                      <LogoImage logo={logoName} logoImage={information.Logo.data.attributes.url} />
+                      <LogoImage
+                        logo={logoName}
+                        logoImage={information.Logo?.data.attributes.url}
+                      />
                     </div>
                     <p>
                       Lorem ipsum dolor sit amet, consectetur adipiscing elit,
@@ -159,8 +166,9 @@ const MasterFooter = ({
               <Col className="offset-xl-1">
                 <div className="sub-title">
                   <div
-                    className={`footer-title ${isOpen && collapse == 2 ? "active" : ""
-                      } `}
+                    className={`footer-title ${
+                      isOpen && collapse == 2 ? "active" : ""
+                    } `}
                   >
                     <h4
                       onClick={() => {
@@ -202,8 +210,9 @@ const MasterFooter = ({
               <Col>
                 <div className="sub-title">
                   <div
-                    className={`footer-title ${isOpen && collapse == 3 ? "active" : ""
-                      } `}
+                    className={`footer-title ${
+                      isOpen && collapse == 3 ? "active" : ""
+                    } `}
                   >
                     <h4
                       onClick={() => {
@@ -245,8 +254,9 @@ const MasterFooter = ({
               <Col>
                 <div className="sub-title">
                   <div
-                    className={`footer-title ${isOpen && collapse == 4 ? "active" : ""
-                      } `}
+                    className={`footer-title ${
+                      isOpen && collapse == 4 ? "active" : ""
+                    } `}
                   >
                     <h4
                       onClick={() => {
@@ -266,7 +276,8 @@ const MasterFooter = ({
                     <div className="footer-contant">
                       <ul className="contact-list">
                         <li>
-                          <i className="fa fa-map-marker"></i>{information.Direccion}
+                          <i className="fa fa-map-marker"></i>
+                          {information.Direccion}
                         </li>
                         <li>
                           <i className="fa fa-phone"></i>

@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import NavBar from "./common/navbar";
 import SideBar from "./common/sidebar";
 import Cart from "../containers/Cart";
@@ -8,9 +8,21 @@ import { Media, Container, Row, Col } from "reactstrap";
 import LogoImage from "./common/logo";
 import Currency from "./common/currency";
 import SearchOverlay from "./common/search-overlay";
+import { getInformacion } from "../../services";
 
-const HeaderTwo = ({ logoName, headerClass, topClass, direction, information }) => {
+const HeaderTwo = ({
+  logoName,
+  headerClass,
+  topClass,
+  direction,
+  information,
+}) => {
+  const [info, setInfo] = useState({});
   useEffect(() => {
+    (async () => {
+      const res = await getInformacion();
+      setInfo(res.attributes);
+    })();
 
     setTimeout(function () {
       document.querySelectorAll(".loader-wrapper").style = "display:none";
@@ -54,7 +66,10 @@ const HeaderTwo = ({ logoName, headerClass, topClass, direction, information }) 
                   </div>
                 </div>
                 <div className="brand-logo layout2-logo">
-                  <LogoImage logo={logoName} logoImage={information.Logo.data.attributes.url} />
+                  <LogoImage
+                    logo={logoName}
+                    logoImage={info?.Logo?.data.attributes.url}
+                  />
                 </div>
                 <div className="menu-right pull-right">
                   <div>

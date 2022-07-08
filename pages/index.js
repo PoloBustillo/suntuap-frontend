@@ -18,13 +18,20 @@ import VideoSection from "./layouts/Beauty/components/Video-Section";
 const Fashion = (props) => {
   return (
     <>
-
       <Helmet>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <link rel="icon" type="image/x-icon" href={"/assets/images/favicon/sun_logo.jpeg"} />
+        <link
+          rel="icon"
+          type="image/x-icon"
+          href={"/assets/images/favicon/sun_logo.jpeg"}
+        />
       </Helmet>
       <ModalComponent />
-      <HeaderTwo information={props.info} logoName={"logo.png"} topClass="top-header" />
+      <HeaderTwo
+        information={props.info}
+        logoName={"logo.png"}
+        topClass="top-header"
+      />
       <Banner />
       <TimeBanner />
       {/* <CollectionBanner />
@@ -56,13 +63,13 @@ const Fashion = (props) => {
 };
 
 export async function getStaticProps() {
-  const res = await getInformacion()
+  const res = await getInformacion();
   return {
     props: {
       info: { ...res.attributes },
     },
     revalidate: 10, // In seconds
-  }
+  };
 }
 
 export default Fashion;
