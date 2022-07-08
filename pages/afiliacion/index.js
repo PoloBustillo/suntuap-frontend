@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
-import CommonLayout from "../../../components/shop/common-layout";
+import CommonLayout from "../../components/shop/common-layout";
 import { Container, Media, Row, Col } from "reactstrap";
-import { getInformacion, getPeriodicos } from "../../../services";
+import { getInformacion, getPeriodicos } from "../../services";
 import { Document, Page } from "react-pdf";
 
 const MasterCollection = ({ img, data, type, about, link, btn, info }) => {
@@ -15,11 +15,12 @@ const MasterCollection = ({ img, data, type, about, link, btn, info }) => {
     <Col lg="3" md="6">
       <div className="collection-block">
         <div>
-          <Media
-            src={"/assets/images/sub-banner2.jpg"}
-            className="img-fluid"
-            alt=""
-          />
+          <Document
+            file={"./Periodico.pdf"}
+            onLoadSuccess={onDocumentLoadSuccess}
+          >
+            <Page pageNumber={pageNumber} />
+          </Document>
         </div>
         <div className="collection-content">
           <h3>{data.attributes.Nombre}</h3>
@@ -47,20 +48,10 @@ const Collection = (props) => {
   }, []);
 
   return (
-    <CommonLayout information={props.info} parent="SUNTUAP" title="Periódico">
+    <CommonLayout information={props.info} parent="SUNTUAP" title="Afiliación">
       <section className="collection section-b-space ratio_square ">
         <Container>
-          <Row className="partition-collection">
-            {news.map((data, i) => {
-              return (
-                <MasterCollection
-                  key={i}
-                  img={"/assets/images/collection/1.jpg"}
-                  data={data}
-                />
-              );
-            })}
-          </Row>
+          <Row className="partition-collection"></Row>
         </Container>
       </section>
     </CommonLayout>

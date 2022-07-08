@@ -49,34 +49,15 @@ const HeaderThree = (props) => {
       <header id="sticky" className="sticky header-2 header-6">
         <div className="mobile-fix-option"></div>
         {/*Top Header Component*/}
-        <TopBarDark topClass="top-header d-sm-block" />
+        <TopBarDark
+          information={props.information}
+          topClass="top-header d-sm-block"
+        />
 
         <Container>
           <Row>
             <Col>
               <div className="main-menu border-section border-top-0">
-                <div className="brand-logo layout2-logo">
-                  <LogoImage logo={props.logoName} />
-                </div>
-                <div>
-                  <form className="form_search" role="textbox">
-                    {/* eslint-disable-next-line */}
-                    <Input
-                      id="query search-autocomplete"
-                      type="search"
-                      placeholder="Find the best for your pet..."
-                      className="nav-search nav-search-field"
-                      aria-expanded="true"
-                    />
-                    <button
-                      type="submit"
-                      name="nav-submit-button"
-                      className="btn-search"
-                    >
-                      <i className="fa fa-search"></i>
-                    </button>
-                  </form>
-                </div>
                 <div className="menu-right pull-right">
                   <div>
                     <div className="icon-nav">
@@ -91,9 +72,6 @@ const HeaderThree = (props) => {
                             />
                           </div>
                         </li>
-                        <Currency icon={"/assets/images/icon/search.png"} />
-                        {/*Header Cart Component */}
-                        <CartContainer icon={"/assets/images/icon/cart.png"} />
                       </ul>
                     </div>
                   </div>

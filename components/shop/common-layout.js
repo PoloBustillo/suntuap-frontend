@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import HeaderOne from "../headers/header-one";
+import HeaderThree from "../headers/header-three";
 import Breadcrubs from "../common/widgets/breadcrubs";
 import Helmet from "react-helmet";
 import MasterFooter from "../footers/common/MasterFooter";
@@ -16,7 +16,7 @@ const CommonLayout = ({ children, title, parent, subTitle, information }) => {
           href={"/assets/images/favicon/1.png"}
         />
       </Helmet>
-      <HeaderOne
+      <HeaderThree
         information={information}
         topClass="top-header"
         logoName="logo.png"
