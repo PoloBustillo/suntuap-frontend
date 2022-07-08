@@ -10,20 +10,8 @@ import Currency from "./common/currency";
 import SearchOverlay from "./common/search-overlay";
 import { getInformacion } from "../../services";
 
-const HeaderTwo = ({
-  logoName,
-  headerClass,
-  topClass,
-  direction,
-  information,
-}) => {
-  const [info, setInfo] = useState({});
+const HeaderTwo = ({ logoName, headerClass, topClass, direction, info }) => {
   useEffect(() => {
-    (async () => {
-      const res = await getInformacion();
-      setInfo(res.attributes);
-    })();
-
     setTimeout(function () {
       document.querySelectorAll(".loader-wrapper").style = "display:none";
     }, 2000);
@@ -44,7 +32,7 @@ const HeaderTwo = ({
       <header id="sticky" className={`${headerClass}`}>
         <div className="mobile-fix-option"></div>
         {/*Top Header Component*/}
-        <TopBar topClass={topClass} />
+        <TopBar information={info} topClass={topClass} />
 
         <Container>
           <Row>

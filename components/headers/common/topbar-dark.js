@@ -1,21 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { Container, Row, Col } from "reactstrap";
 import Link from "next/link";
-import firebase from "../../../config/base";
-import { useRouter } from "next/router";
-import { getInformacion } from "../../../services";
 
-const TopBarDark = ({ topClass, fluid }) => {
-  const router = useRouter();
-  const [information, setInformation] = useState({})
-  useEffect(() => {
-    (async () => {
-      let data = await getInformacion()
-
-      setInformation(data.attributes)
-    })();
-  }, [])
-
+const TopBarDark = ({ topClass, fluid, information }) => {
   return (
     <div className={topClass}>
       <Container fluid={fluid}>
@@ -25,7 +12,8 @@ const TopBarDark = ({ topClass, fluid }) => {
               <ul>
                 <a href={`tel:${information.Telefono}`}>
                   <li>
-                    <i className="fa fa-phone" aria-hidden="true"></i>Tel: {information.Telefono}
+                    <i className="fa fa-phone" aria-hidden="true"></i>Tel:{" "}
+                    {information.Telefono}
                   </li>
                 </a>
               </ul>
@@ -46,7 +34,11 @@ const TopBarDark = ({ topClass, fluid }) => {
                       <a>Registrar</a>
                     </Link>
                   </li>
-                  <li onClick={() => { console.log("LOGOUT") }}>
+                  <li
+                    onClick={() => {
+                      console.log("LOGOUT");
+                    }}
+                  >
                     <a>Salir</a>
                   </li>
                 </ul>

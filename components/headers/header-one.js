@@ -16,6 +16,7 @@ const HeaderOne = ({
   headerClass,
   topClass,
   noTopBar,
+  information,
   direction,
 }) => {
   const router = useRouter();
@@ -23,15 +24,8 @@ const HeaderOne = ({
   /*=====================
      Pre loader
      ==========================*/
-  const [data, setData] = useState({})
 
   useEffect(() => {
-    (async () => {
-      let data = await getInformacion();
-      console.log("DATA@", data)
-      setData(data.attributes)
-
-    })();
     setTimeout(function () {
       document.querySelectorAll(".loader-wrapper").style = "display:none";
     }, 2000);
@@ -81,7 +75,11 @@ const HeaderOne = ({
       <header id="sticky" className={`sticky ${headerClass}`}>
         <div className="mobile-fix-option"></div>
         {/*Top Header Component*/}
-        {noTopBar ? "" : <TopBarDark topClass={topClass} />}
+        {noTopBar ? (
+          ""
+        ) : (
+          <TopBarDark information={information} topClass={topClass} />
+        )}
 
         <Container>
           <Row>
@@ -100,7 +98,6 @@ const HeaderOne = ({
                     {/*SideBar Navigation Component*/}
                     <SideBar />
                   </div>
-
                 </div>
                 <div className="menu-right pull-right">
                   {/*Top Navigation Bar Component*/}

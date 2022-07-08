@@ -1,47 +1,54 @@
 import React, { Fragment, useEffect, useState } from "react";
 import { Row, Col } from "reactstrap";
-import { getDelegaciones, getDocumentos, getNoticiasMenu, getSecretarias, getSuntuapMenu, getVaquerias } from "../../../services";
+import {
+  getDelegaciones,
+  getDocumentos,
+  getNoticiasMenu,
+  getSecretarias,
+  getSuntuapMenu,
+  getVaquerias,
+} from "../../../services";
+import Link from "next/link";
 
 const SideBar = () => {
-  const [data, setData] = useState([])
-  const [dataDelegaciones, setDataDelegaciones] = useState([])
-  const [dataDocumentos, setDataDocumentos] = useState([])
-  const [dataSuntuap, setDataSuntuap] = useState([])
-  const [dataNoticias, setDataNoticias] = useState([])
-  const [dataVaquerias, setDataVaquerias] = useState([])
+  const [data, setData] = useState([]);
+  const [dataDelegaciones, setDataDelegaciones] = useState([]);
+  const [dataDocumentos, setDataDocumentos] = useState([]);
+  const [dataSuntuap, setDataSuntuap] = useState([]);
+  const [dataNoticias, setDataNoticias] = useState([]);
+  const [dataVaquerias, setDataVaquerias] = useState([]);
 
   useEffect(() => {
-
     (async () => {
       let data = await getDelegaciones();
-      setDataDelegaciones(data)
+      setDataDelegaciones(data);
     })();
 
     (async () => {
       let data = await getSecretarias();
-      setData(data)
+      setData(data);
     })();
 
     (async () => {
       let data = await getDocumentos();
-      setDataDocumentos(data)
+      setDataDocumentos(data);
     })();
 
     (async () => {
       let data = await getSuntuapMenu();
-      setDataSuntuap(data)
+      setDataSuntuap(data);
     })();
 
     (async () => {
       let data = await getNoticiasMenu();
-      setDataNoticias(data)
+      setDataNoticias(data);
     })();
 
     (async () => {
       let data = await getVaquerias();
-      setDataVaquerias(data)
+      setDataVaquerias(data);
     })();
-  }, [])
+  }, []);
 
   const closeNav = () => {
     var closemyslide = document.getElementById("mySidenav");
@@ -123,9 +130,7 @@ const SideBar = () => {
           </a>
           <ul id="sub-menu" className="sidebar-menu">
             <li>
-              <a href="/">
-                Inicio
-              </a>
+              <a href="/">Inicio</a>
             </li>
             <li>
               <a href="#" onClick={(e) => handleSubmenu(e)}>
@@ -133,15 +138,17 @@ const SideBar = () => {
                 <span className="sub-arrow"></span>
               </a>
               <ul>
-                {dataSuntuap.map(menuItem => {
+                {dataSuntuap.map((menuItem) => {
                   return (
-
                     <li>
-                      <a href={menuItem.attributes.Menu.URL.url} onClick={(e) => handleSubmenu(e)}>
+                      <a
+                        href={menuItem.attributes.Menu.URL.url}
+                        onClick={(e) => handleSubmenu(e)}
+                      >
                         {menuItem.attributes.Menu.Nombre}
                       </a>
                     </li>
-                  )
+                  );
                 })}
               </ul>
             </li>
@@ -153,30 +160,60 @@ const SideBar = () => {
 
               <ul className="mega-menu clothing-menu">
                 <Row m="0">
-                  {data.map(secretaria => {
+                  {data.map((secretaria) => {
                     return (
                       <Col xl="4">
                         <li>
-                          <a href={secretaria.attributes.URL.url} onClick={(e) => handleSubmenu(e)}>
+                          <a
+                            href={secretaria.attributes.URL.url}
+                            onClick={(e) => handleSubmenu(e)}
+                          >
                             {secretaria.attributes.Secretaria}
                             <span className="sub-arrow"></span>
                           </a>
                           {secretaria.attributes.Miembro.map((miembro) => {
                             return (
-                              <ul >
+                              <ul>
                                 <li style={{ fontSize: "5 px" }}>
-                                  <a href={secretaria.attributes.URL.url} style={{ fontSize: "5 px" }}><i style={{ fontSize: "12px", color: "#bbb", textAlign: 'center' }} className="fa fa-user" aria-hidden="true"></i> {miembro.Nombre}</a>
-                                  <a href={secretaria.attributes.URL.url} style={{ fontSize: "5 px" }}><i style={{ fontSize: "8px", color: "#bbb", textAlign: 'center' }} className="fa fa-envelope" aria-hidden="true"></i> {miembro.Email}</a>
+                                  <a
+                                    href={secretaria.attributes.URL.url}
+                                    style={{ fontSize: "5 px" }}
+                                  >
+                                    <i
+                                      style={{
+                                        fontSize: "12px",
+                                        color: "#bbb",
+                                        textAlign: "center",
+                                      }}
+                                      className="fa fa-user"
+                                      aria-hidden="true"
+                                    ></i>{" "}
+                                    {miembro.Nombre}
+                                  </a>
+                                  <a
+                                    href={secretaria.attributes.URL.url}
+                                    style={{ fontSize: "5 px" }}
+                                  >
+                                    <i
+                                      style={{
+                                        fontSize: "8px",
+                                        color: "#bbb",
+                                        textAlign: "center",
+                                      }}
+                                      className="fa fa-envelope"
+                                      aria-hidden="true"
+                                    ></i>{" "}
+                                    {miembro.Email}
+                                  </a>
                                 </li>
-                              </ul>)
+                              </ul>
+                            );
                           })}
-
                         </li>
                       </Col>
-                    )
+                    );
                   })}
                 </Row>
-
               </ul>
             </li>
             <li>
@@ -186,25 +223,28 @@ const SideBar = () => {
               </a>
               <ul>
                 <Row m="0">
-                  {dataDelegaciones.map(delegaciones => {
+                  {dataDelegaciones.map((delegaciones) => {
                     return (
-
                       <li>
-                        <a href={delegaciones.attributes.Delegacion.URL.url} onClick={(e) => handleSubmenu(e)}>
+                        <a
+                          href={delegaciones.attributes.Delegacion.URL.url}
+                          onClick={(e) => handleSubmenu(e)}
+                        >
                           {delegaciones.attributes.Delegacion.Nombre}
                         </a>
                       </li>
-
-                    )
+                    );
                   })}
                 </Row>
               </ul>
             </li>
             <li>
-              <a target="_blank" href="https://docs.google.com/forms/d/1iV5h7hGOkdRkai9777qJAEUIg35RKHYoQ1aCGHheH2w/prefill">
+              <a
+                target="_blank"
+                href="https://docs.google.com/forms/d/1iV5h7hGOkdRkai9777qJAEUIg35RKHYoQ1aCGHheH2w/prefill"
+              >
                 Afiliación
               </a>
-
             </li>
             <li>
               <a href="#" onClick={(e) => handleSubmenu(e)}>
@@ -213,38 +253,35 @@ const SideBar = () => {
               </a>
 
               <ul>
-                {dataDocumentos.map(doc => {
+                {dataDocumentos.map((doc) => {
                   if (doc.attributes.Menu.Submenu.length != 0) {
                     let subMenus = doc.attributes.Menu.Submenu.map((menu) => {
                       return (
                         <li>
-                          <a href={menu.URL}>
-                            {menu.Nombre}
-                          </a>
+                          <Link href={menu.URL}>{menu.Nombre}</Link>
                         </li>
-                      )
-                    })
-                    return (<li>
-                      <a href={doc.attributes.Menu.URL} onClick={(e) => handleSubmenu(e)}>
-                        {doc.attributes.Menu.Nombre}
-                        <span className="sub-arrow"></span>
-                      </a>
-
-                      <ul>
-                        {subMenus}
-                      </ul>
-                    </li>)
-                  }
-                  else {
+                      );
+                    });
                     return (
-
                       <li>
-                        <a href={doc.attributes.Menu.URL} onClick={(e) => handleSubmenu(e)}>
-                          {doc.attributes.Menu.Nombre}
-                        </a>
-                      </li>
+                        <Link href={doc.attributes.Menu.URL}>
+                          <a onClick={(e) => handleSubmenu(e)}>
+                            {doc.attributes.Menu.Nombre}
+                            <span className="sub-arrow"></span>
+                          </a>
+                        </Link>
 
-                    )
+                        <ul>{subMenus}</ul>
+                      </li>
+                    );
+                  } else {
+                    return (
+                      <li>
+                        <Link href={doc.attributes.Menu.URL}>
+                          <a>{doc.attributes.Menu.Nombre}</a>
+                        </Link>
+                      </li>
+                    );
                   }
                 })}
               </ul>
@@ -256,16 +293,17 @@ const SideBar = () => {
               </a>
               <ul>
                 <Row m="0">
-                  {dataNoticias.map(noticias => {
+                  {dataNoticias.map((noticias) => {
                     return (
-
                       <li>
-                        <a href={noticias.attributes.Menu.URL.url} onClick={(e) => handleSubmenu(e)}>
+                        <a
+                          href={noticias.attributes.Menu.URL.url}
+                          onClick={(e) => handleSubmenu(e)}
+                        >
                           {noticias.attributes.Menu.Nombre}
                         </a>
                       </li>
-
-                    )
+                    );
                   })}
                 </Row>
               </ul>
@@ -277,51 +315,48 @@ const SideBar = () => {
               </a>
               <ul>
                 <Row m="0">
-                  {dataVaquerias.map(doc => {
+                  {dataVaquerias.map((doc) => {
                     if (doc.attributes.Menu.Submenu.length != 0) {
                       let subMenus = doc.attributes.Menu.Submenu.map((menu) => {
                         return (
                           <li>
-                            <a href={menu.URL}>
-                              {menu.Nombre}
-                            </a>
+                            <a href={menu.URL}>{menu.Nombre}</a>
                           </li>
-                        )
-                      })
-                      return (<li>
-                        <a href={doc.attributes.Menu.URL} onClick={(e) => handleSubmenu(e)}>
-                          {doc.attributes.Menu.Nombre}
-                          <span className="sub-arrow"></span>
-                        </a>
-
-                        <ul>
-                          {subMenus}
-                        </ul>
-                      </li>)
-                    }
-                    else {
+                        );
+                      });
                       return (
-
                         <li>
-                          <a href={doc.attributes.Menu.URL} onClick={(e) => handleSubmenu(e)}>
+                          <a
+                            href={doc.attributes.Menu.URL}
+                            onClick={(e) => handleSubmenu(e)}
+                          >
+                            {doc.attributes.Menu.Nombre}
+                            <span className="sub-arrow"></span>
+                          </a>
+
+                          <ul>{subMenus}</ul>
+                        </li>
+                      );
+                    } else {
+                      return (
+                        <li>
+                          <a
+                            href={doc.attributes.Menu.URL}
+                            onClick={(e) => handleSubmenu(e)}
+                          >
                             {doc.attributes.Menu.Nombre}
                           </a>
                         </li>
-
-                      )
+                      );
                     }
                   })}
                 </Row>
-
-
               </ul>
             </li>
-
-
           </ul>
         </nav>
-      </div >
-    </Fragment >
+      </div>
+    </Fragment>
   );
 };
 

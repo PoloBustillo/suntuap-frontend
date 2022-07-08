@@ -28,7 +28,7 @@ const Fashion = (props) => {
       </Helmet>
       <ModalComponent />
       <HeaderTwo
-        information={props.info}
+        info={props.info}
         logoName={"logo.png"}
         topClass="top-header"
       />
