@@ -18,7 +18,8 @@ const DOCUMENTOS_ENDPOINT =
   "/menus-documento?populate[0]=Menu.Submenu&populate[1]=Menu.URL";
 const SUNTUAP_MENU_ENDPOINT =
   "/menus-suntuap?populate[0]=Menu.Submenu&populate[1]=Menu.URL";
-const PERIODICOS_ENDPOINT = "/periodicos/?populate[0]=Periodico";
+const PERIODICOS_ENDPOINT =
+  "/periodicos?populate[0]=Periodico&populate[1]=Poster";
 const NOTICIAS_ENDPOINT = "/menus-noticia/?populate[0]=Menu.URL";
 const VAQUERIAS_ENDPOINT =
   "/menus-vaquerias/?populate[0]=Menu.URL&populate[1]=Menu.Submenu";

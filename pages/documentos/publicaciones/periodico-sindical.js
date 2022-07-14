@@ -15,11 +15,19 @@ const MasterCollection = ({ img, data, type, about, link, btn, info }) => {
     <Col lg="3" md="6">
       <div className="collection-block">
         <div>
-          <Media
-            src={"/assets/images/sub-banner2.jpg"}
-            className="img-fluid"
-            alt=""
-          />
+          {data.attributes.Poster.data !== null ? (
+            <Media
+              src={data.attributes.Poster.data.attributes.url}
+              className="img-fluid"
+              alt=""
+            />
+          ) : (
+            <Media
+              src={"/assets/images/sub-banner2.jpg"}
+              className="img-fluid"
+              alt=""
+            />
+          )}
         </div>
         <div className="collection-content">
           <h3>{data.attributes.Nombre}</h3>
