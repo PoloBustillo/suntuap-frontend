@@ -3,6 +3,7 @@ import CommonLayout from "../../components/shop/common-layout";
 import { Container, Media, Row, Col } from "reactstrap";
 import { getInformacion, getPeriodicos } from "../../services";
 import { Document, Page } from "react-pdf";
+import PDFViewer from "../../components/pdf-viewer";
 
 const MasterCollection = ({ img, data, type, about, link, btn, info }) => {
   const [numPages, setNumPages] = useState(null);
@@ -62,6 +63,7 @@ const Collection = (props) => {
             >
               Cargando…
             </iframe>
+            <PDFViewer />
           </Row>
         </Container>
       </section>

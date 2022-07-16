@@ -25,10 +25,12 @@
 
 // module.exports = {swcMinify: true}, withPlugins([withImages], nextConfig);
 
-
 const nextConfig = {
   env: {
     API_URL: "http://localhost:8000/graphql",
+  },
+  future: {
+    webpack5: true,
   },
   webpack(config, options) {
     config.module.rules.push({
@@ -39,6 +41,20 @@ const nextConfig = {
           limit: 100000,
         },
       },
+    });
+    // load worker files as a urls with `file-loader`
+    config.module.rules.unshift({
+      test: /pdf\.worker\.(min\.)?js/,
+      use: [
+        {
+          loader: "file-loader",
+          options: {
+            name: "[contenthash].[ext]",
+            publicPath: "_next/static/worker",
+            outputPath: "static/worker",
+          },
+        },
+      ],
     });
 
     return config;
