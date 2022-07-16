@@ -16,11 +16,17 @@ const MasterCollection = ({ img, data, type, about, link, btn, info }) => {
       <div className="collection-block">
         <div>
           {data.attributes.Poster.data !== null ? (
-            <Media
-              src={data.attributes.Poster.data.attributes.url}
-              className="img-fluid"
-              alt=""
-            />
+            <a
+              href={data.attributes.Periodico.data.attributes.url}
+              target="_blank"
+            >
+              <Media
+                src={data.attributes.Poster.data.attributes.url}
+                style={{ maxHeight: "300px" }}
+                className="img-fluid"
+                alt=""
+              />
+            </a>
           ) : (
             <Media
               src={"/assets/images/sub-banner2.jpg"}
@@ -33,6 +39,7 @@ const MasterCollection = ({ img, data, type, about, link, btn, info }) => {
           <h3>{data.attributes.Nombre}</h3>
           <a
             href={data.attributes.Periodico.data.attributes.url}
+            target="_blank"
             className="btn btn-outline"
           >
             Leer

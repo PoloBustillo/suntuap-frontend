@@ -5,20 +5,18 @@ import { getContadorInfo } from "../../services";
 import CountdownComponent from "./widgets/countdownComponent";
 
 const TimeBanner = () => {
-  const [data, setData] = useState({})
+  const [data, setData] = useState({});
   useEffect(() => {
-
     (async () => {
       let data = await getContadorInfo();
-      setData(data.attributes)
+      setData(data.attributes);
     })();
-
-  }, [])
+  }, []);
 
   return (
     <section>
       <Container style={{ cursor: "pointer" }}>
-        <Link href={data.Link ? data.Link : ""} >
+        <Link target={"_blank"} href={data.Link ? data.Link : ""}>
           <Row className="banner-timer">
             <Col md="6">
               <div className="banner-text">

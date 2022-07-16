@@ -51,7 +51,18 @@ const Collection = (props) => {
     <CommonLayout information={props.info} parent="SUNTUAP" title="Afiliación">
       <section className="collection section-b-space ratio_square ">
         <Container>
-          <Row className="partition-collection"></Row>
+          <Row className="partition-collection">
+            <iframe
+              src="https://docs.google.com/forms/d/e/1FAIpQLSdAR2QsRuFcsjgieVaCS75a2wxoVk8i4-rASnTe619IPlNATg/viewform?embedded=true"
+              width="640"
+              height="6036"
+              frameborder="0"
+              marginheight="0"
+              marginwidth="0"
+            >
+              Cargando…
+            </iframe>
+          </Row>
         </Container>
       </section>
     </CommonLayout>

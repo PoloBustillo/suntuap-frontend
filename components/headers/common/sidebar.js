@@ -239,12 +239,7 @@ const SideBar = () => {
               </ul>
             </li>
             <li>
-              <a
-                target="_blank"
-                href="https://docs.google.com/forms/d/1iV5h7hGOkdRkai9777qJAEUIg35RKHYoQ1aCGHheH2w/prefill"
-              >
-                Afiliación
-              </a>
+              <a href="/afiliacion">Afiliación</a>
             </li>
             <li>
               <a href="#" onClick={(e) => handleSubmenu(e)}>
