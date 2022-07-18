@@ -141,12 +141,9 @@ const SideBar = () => {
                 {dataSuntuap.map((menuItem) => {
                   return (
                     <li>
-                      <a
-                        href={menuItem.attributes.Menu.URL.url}
-                        onClick={(e) => handleSubmenu(e)}
-                      >
+                      <Link href={menuItem.attributes.Menu.URL.url}>
                         {menuItem.attributes.Menu.Nombre}
-                      </a>
+                      </Link>
                     </li>
                   );
                 })}
@@ -164,10 +161,7 @@ const SideBar = () => {
                     return (
                       <Col xl="4">
                         <li>
-                          <a
-                            href={secretaria.attributes.URL.url}
-                            onClick={(e) => handleSubmenu(e)}
-                          >
+                          <a onClick={(e) => handleSubmenu(e)}>
                             {secretaria.attributes.Secretaria}
                             <span className="sub-arrow"></span>
                           </a>

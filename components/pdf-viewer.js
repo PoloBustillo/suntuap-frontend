@@ -66,7 +66,10 @@ export default function PDFViewer(props) {
               onLoadSuccess={onDocumentLoadSuccess}
             >
               <div>
-                <Page width={size.width} pageNumber={pageNumber} />
+                <Page
+                  width={size.width ? size.width : 900}
+                  pageNumber={pageNumber}
+                />
               </div>
             </Document>
             <Row className="my-4">
