@@ -61,6 +61,7 @@
     "react-pdf": "^5.7.2",
     "react-responsive-carousel": "^3.1.51",
     "react-reveal": "^1.2.2",
+    "react-sizeme": "^3.0.2",
     "react-slick": "^0.25.2",
     "react-sticky-el": "^1.1.0",
     "react-tabs": "^3.1.2",

@@ -20,8 +20,9 @@ export default function MyApp({ Component, pageProps }) {
     const path = window.location.pathname.split("/");
     const url = path[path.length - 1];
     setUrl(url);
-    document.body.classList.add("dark"); setTimeout(function () {
-      setIsLoading(false)
+    document.body.classList.add("dark");
+    setTimeout(function () {
+      setIsLoading(false);
     }, 500);
   }, []);
   return (
@@ -46,7 +47,6 @@ export default function MyApp({ Component, pageProps }) {
           </Helmet>
           <div>
             <SettingProvider>
-
               <CurrencyContextProvider>
                 <CartContextProvider>
                   <WishlistContextProvider>
@@ -57,7 +57,6 @@ export default function MyApp({ Component, pageProps }) {
                 </CartContextProvider>
               </CurrencyContextProvider>
               <ThemeSettings />
-
             </SettingProvider>
             <ToastContainer />
             <TapTop />

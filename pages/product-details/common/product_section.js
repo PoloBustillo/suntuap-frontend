@@ -1,7 +1,7 @@
 import React, { useContext, useState } from "react";
 import { Container, Row, Col, Media, Modal, ModalBody } from "reactstrap";
 import { useQuery } from "@apollo/client";
-import { gql } from '@apollo/client';
+import { gql } from "@apollo/client";
 import { CurrencyContext } from "../../../helpers/Currency/CurrencyContext";
 import CartContext from "../../../helpers/cart";
 import { WishlistContext } from "../../../helpers/wishlist/WishlistContext";
@@ -73,13 +73,7 @@ const ProductSection = () => {
     toggle();
   };
 
-  var { loading, data } = useQuery(GET_PRODUCTS, {
-    variables: {
-      type: "fashion",
-      indexFrom: 0,
-      limit: 8,
-    },
-  });
+  var { loading, data } = [];
 
   return (
     <section className="section-b-space ratio_asos">

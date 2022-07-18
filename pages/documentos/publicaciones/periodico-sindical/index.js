@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from "react";
-import CommonLayout from "../../../components/shop/common-layout";
+import CommonLayout from "../../../../components/shop/common-layout";
 import { Container, Media, Row, Col } from "reactstrap";
-import { getInformacion, getPeriodicos } from "../../../services";
+import { getInformacion, getPeriodicos } from "../../../../services";
 import { Document, Page } from "react-pdf";
+import Link from "next/link";
 
 const MasterCollection = ({ img, data, type, about, link, btn, info }) => {
   const [numPages, setNumPages] = useState(null);
@@ -16,17 +17,21 @@ const MasterCollection = ({ img, data, type, about, link, btn, info }) => {
       <div className="collection-block">
         <div>
           {data.attributes.Poster.data !== null ? (
-            <a
-              href={data.attributes.Periodico.data.attributes.url}
+            <Link
+              href={{
+                pathname: `/documentos/publicaciones/periodico-sindical/${data.attributes.Nombre}`,
+
+                query: { url: data.attributes.Periodico.data.attributes.url },
+              }}
               target="_blank"
             >
               <Media
                 src={data.attributes.Poster.data.attributes.url}
-                style={{ maxHeight: "300px" }}
+                style={{ maxHeight: "300px", margin: "auto" }}
                 className="img-fluid"
                 alt=""
               />
-            </a>
+            </Link>
           ) : (
             <Media
               src={"/assets/images/sub-banner2.jpg"}
