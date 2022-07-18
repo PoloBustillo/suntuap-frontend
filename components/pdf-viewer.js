@@ -1,7 +1,12 @@
 import { useState } from "react";
 // import default react-pdf entry
 import { Document, Page } from "react-pdf";
-import { SizeMe } from "react-sizeme";
+import dynamic from "next/dynamic";
+
+const SizeMe = dynamic(() => import("react-sizeme"), {
+  ssr: false,
+});
+
 import { pdfjs } from "react-pdf";
 import { Button, Col, Row } from "reactstrap";
 pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.js`;
