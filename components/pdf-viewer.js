@@ -32,67 +32,70 @@ export default function PDFViewer(props) {
       monitorHeight
       refreshRate={128}
       refreshMode={"debounce"}
-      render={({ size }) => (
-        <div>
-          <Row className="my-4">
-            <Col className="ml-4">
-              <Button
-                color="info"
-                disabled={pageNumber <= 1}
-                onClick={previousPage}
-              >
-                Anterior
-              </Button>
-              <Button
-                color="info"
-                disabled={pageNumber >= numPages}
-                onClick={nextPage}
-              >
-                Siguiente
-              </Button>
-            </Col>
-            <Col className="m-auto">
-              <p>
-                Página {pageNumber || (numPages ? 1 : "--")} de{" "}
-                {numPages || "--"}
-              </p>
-            </Col>
-          </Row>
+      render={({ size }) => {
+        console.log(size);
+        return (
+          <div>
+            <Row className="my-4">
+              <Col className="ml-4">
+                <Button
+                  color="info"
+                  disabled={pageNumber <= 1}
+                  onClick={previousPage}
+                >
+                  Anterior
+                </Button>
+                <Button
+                  color="info"
+                  disabled={pageNumber >= numPages}
+                  onClick={nextPage}
+                >
+                  Siguiente
+                </Button>
+              </Col>
+              <Col className="m-auto">
+                <p>
+                  Página {pageNumber || (numPages ? 1 : "--")} de{" "}
+                  {numPages || "--"}
+                </p>
+              </Col>
+            </Row>
 
-          <Document
-            file={props.file ? props.file : file}
-            onLoadSuccess={onDocumentLoadSuccess}
-          >
-            <div>
-              <Page width={size.width} pageNumber={pageNumber} />
-            </div>
-          </Document>
-          <Row className="my-4">
-            <Col>
-              <Button
-                color="info"
-                disabled={pageNumber <= 1}
-                onClick={previousPage}
-              >
-                Anterior
-              </Button>
-              <Button
-                color="info"
-                disabled={pageNumber >= numPages}
-                onClick={nextPage}
-              >
-                Siguiente
-              </Button>
-            </Col>
-            <Col className="mx-auto">
-              <p>
-                Página {pageNumber || (numPages ? 1 : "--")} de{" "}
-                {numPages || "--"}
-              </p>
-            </Col>
-          </Row>
-        </div>
-      )}
+            <Document
+              file={props.file ? props.file : file}
+              onLoadSuccess={onDocumentLoadSuccess}
+            >
+              <div>
+                <Page width={size.width} pageNumber={pageNumber} />
+              </div>
+            </Document>
+            <Row className="my-4">
+              <Col>
+                <Button
+                  color="info"
+                  disabled={pageNumber <= 1}
+                  onClick={previousPage}
+                >
+                  Anterior
+                </Button>
+                <Button
+                  color="info"
+                  disabled={pageNumber >= numPages}
+                  onClick={nextPage}
+                >
+                  Siguiente
+                </Button>
+              </Col>
+              <Col className="mx-auto">
+                <p>
+                  Página {pageNumber || (numPages ? 1 : "--")} de{" "}
+                  {numPages || "--"}
+                </p>
+              </Col>
+            </Row>
+          </div>
+        );
+      }}
     />
   );
 }
