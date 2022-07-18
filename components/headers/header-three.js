@@ -6,6 +6,7 @@ import TopBarDark from "./common/topbar-dark";
 import LogoImage from "./common/logo";
 import { Media, Container, Row, Col, Input } from "reactstrap";
 import SearchOverlay from "./common/search-overlay";
+import SideBar from "./common/sidebar";
 
 const HeaderThree = (props) => {
   /*=====================
@@ -23,7 +24,12 @@ const HeaderThree = (props) => {
       window.removeEventListener("scroll", handleScroll);
     };
   }, []);
-
+  const openNav = () => {
+    var openmyslide = document.getElementById("mySidenav");
+    if (openmyslide) {
+      openmyslide.classList.add("open-side");
+    }
+  };
   const handleScroll = () => {
     let number =
       window.pageXOffset ||
@@ -58,6 +64,22 @@ const HeaderThree = (props) => {
           <Row>
             <Col>
               <div className="main-menu border-section border-top-0">
+                <div className="menu-left">
+                  <div className="navbar">
+                    <a href={null} onClick={openNav}>
+                      <div className="bar-style">
+                        {" "}
+                        <i
+                          className="fa fa-bars sidebar-bar"
+                          aria-hidden="true"
+                        ></i>
+                      </div>
+                    </a>
+                    {/*SideBar Navigation Component*/}
+                    <SideBar />
+                  </div>
+                </div>
+
                 <div className="menu-right pull-right">
                   <div>
                     <div className="icon-nav">
@@ -72,6 +94,7 @@ const HeaderThree = (props) => {
                             />
                           </div>
                         </li>
+                        <Currency icon={"/assets/images/icon/setting.png"} />
                       </ul>
                     </div>
                   </div>
