@@ -186,7 +186,10 @@ const SideBar = () => {
                                   </a>
                                   <a
                                     href={secretaria.attributes.URL.url}
-                                    style={{ fontSize: "5 px" }}
+                                    style={{
+                                      fontSize: "5 px",
+                                      overflow: "overlay",
+                                    }}
                                   >
                                     <i
                                       style={{
@@ -243,6 +246,7 @@ const SideBar = () => {
 
               <ul>
                 {dataDocumentos.map((doc) => {
+                  console.log(doc.attributes.Menu.URL);
                   if (doc.attributes.Menu.Submenu.length != 0) {
                     let subMenus = doc.attributes.Menu.Submenu.map((menu) => {
                       return (
@@ -253,7 +257,7 @@ const SideBar = () => {
                     });
                     return (
                       <li>
-                        <Link href={doc.attributes.Menu.URL}>
+                        <Link href={doc.attributes.Menu.URL.url}>
                           <a onClick={(e) => handleSubmenu(e)}>
                             {doc.attributes.Menu.Nombre}
                             <span className="sub-arrow"></span>
@@ -266,7 +270,7 @@ const SideBar = () => {
                   } else {
                     return (
                       <li>
-                        <Link href={doc.attributes.Menu.URL}>
+                        <Link href={doc.attributes.Menu.URL.url}>
                           <a>{doc.attributes.Menu.Nombre}</a>
                         </Link>
                       </li>
@@ -285,12 +289,9 @@ const SideBar = () => {
                   {dataNoticias.map((noticias) => {
                     return (
                       <li>
-                        <a
-                          href={noticias.attributes.Menu.URL.url}
-                          onClick={(e) => handleSubmenu(e)}
-                        >
+                        <Link href={noticias.attributes.Menu.URL.url}>
                           {noticias.attributes.Menu.Nombre}
-                        </a>
+                        </Link>
                       </li>
                     );
                   })}
@@ -316,7 +317,7 @@ const SideBar = () => {
                       return (
                         <li>
                           <a
-                            href={doc.attributes.Menu.URL}
+                            href={doc.attributes.Menu.URL.url}
                             onClick={(e) => handleSubmenu(e)}
                           >
                             {doc.attributes.Menu.Nombre}

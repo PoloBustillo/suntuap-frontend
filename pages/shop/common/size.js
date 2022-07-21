@@ -19,11 +19,7 @@ const Size = () => {
   const filterChecked = context.filterChecked;
   const toggle = () => setIsOpen(!isOpen);
 
-  var { loading, data } = useQuery(GET_SIZE, {
-    variables: {
-      type: context.state,
-    },
-  });
+  var { loading, data } = [];
 
   return (
     <div className="collection-collapse-block border-0 open">
@@ -37,7 +33,8 @@ const Size = () => {
               ? "loading"
               : data &&
                 data.getSize.size.map((size, index) => (
-                  <div key={index}
+                  <div
+                    key={index}
                     className="custom-control custom-checkbox collection-filter-checkbox"
                     key={index}
                   >

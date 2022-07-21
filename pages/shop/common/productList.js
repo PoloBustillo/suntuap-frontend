@@ -93,18 +93,7 @@ const ProductList = ({ colClass, layoutList, openSidebar, noSidebar }) => {
     );
   }, [selectedBrands, selectedColor, selectedSize, selectedPrice]);
 
-  var { loading, data, fetchMore } = useQuery(GET_PRODUCTS, {
-    variables: {
-      type: selectedCategory,
-      priceMax: selectedPrice.max,
-      priceMin: selectedPrice.min,
-      color: selectedColor,
-      brand: selectedBrands,
-      sortBy: sortBy,
-      indexFrom: 0,
-      limit: limit,
-    },
-  });
+  var { loading, data, fetchMore } = [];
 
   const handlePagination = () => {
     setIsLoading(true);

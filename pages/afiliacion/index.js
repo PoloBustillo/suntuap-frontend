@@ -4,45 +4,23 @@ import { Container, Media, Row, Col } from "reactstrap";
 import { getInformacion, getPeriodicos } from "../../services";
 import { Document, Page } from "react-pdf";
 import dynamic from "next/dynamic";
+import ProductList from "../shop/common/productList";
+import FilterPage from "../shop/common/filter";
 
 const PDFViewer = dynamic(() => import("../../components/pdf-viewer"), {
   ssr: false,
 });
 
-const MasterCollection = ({ img, data, type, about, link, btn, info }) => {
-  const [numPages, setNumPages] = useState(null);
-  const [pageNumber, setPageNumber] = useState(1);
-
-  function onDocumentLoadSuccess({ numPages }) {
-    setNumPages(numPages);
-  }
-  return (
-    <Col lg="3" md="6">
-      <div className="collection-block">
-        <div>
-          <Document
-            file={"./Periodico.pdf"}
-            onLoadSuccess={onDocumentLoadSuccess}
-          >
-            <Page pageNumber={pageNumber} />
-          </Document>
-        </div>
-        <div className="collection-content">
-          <h3>{data.attributes.Nombre}</h3>
-          <a
-            href={data.attributes.Periodico.data.attributes.url}
-            className="btn btn-outline"
-          >
-            Leer
-          </a>
-        </div>
-      </div>
-    </Col>
-  );
-};
-
 const Collection = (props) => {
   const [news, setNews] = useState([]);
+  const [sidebarView, setSidebarView] = useState(false);
+  const openCloseSidebar = () => {
+    if (sidebarView) {
+      setSidebarView(!sidebarView);
+    } else {
+      setSidebarView(!sidebarView);
+    }
+  };
 
   useEffect(() => {
     (async () => {
@@ -54,6 +32,23 @@ const Collection = (props) => {
 
   return (
     <CommonLayout information={props.info} parent="SUNTUAP" title="Afiliación">
+      <section className="section-b-space ratio_asos">
+        <div className="collection-wrapper">
+          <Container>
+            <Row>
+              <ProductList
+                colClass="col-xl-3 col-6 col-grid-box"
+                openSidebar={() => openCloseSidebar(sidebarView)}
+              />
+              <FilterPage
+                sm="3"
+                sidebarView={sidebarView}
+                closeSidebar={() => openCloseSidebar(sidebarView)}
+              />
+            </Row>
+          </Container>
+        </div>
+      </section>
       <section className="collection section-b-space ratio_square ">
         <Container>
           <Row className="partition-collection">
@@ -67,7 +62,6 @@ const Collection = (props) => {
             >
               Cargando…
             </iframe>
-            <PDFViewer />
           </Row>
         </Container>
       </section>
