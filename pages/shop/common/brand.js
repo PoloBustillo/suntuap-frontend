@@ -16,7 +16,7 @@ const Brand = () => {
   return (
     <div className="collection-collapse-block open">
       <h3 className="collapse-block-title" onClick={toggleBrand}>
-        brand
+        Eventos
       </h3>
       <Collapse isOpen={isOpen}>
         <div className="collection-collapse-block-content">

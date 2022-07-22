@@ -26,7 +26,7 @@ const NewProduct = () => {
   return (
     // <!-- side-bar single product slider start -->
     <div className="theme-card">
-      <h5 className="title-border">new product</h5>
+      <h5 className="title-border">Novedades</h5>
       <Slider className="offer-slider slide-1">
         <div>
           {!data ||
